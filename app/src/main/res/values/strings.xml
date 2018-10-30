@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Part-Timer</string>
+    <string name="off_campus">OFF-Campus</string>
+    <string name="on_campus">ON_Campus</string>
+    <string-array name="weekly_monthly">
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
 </resources>
