@@ -1,3 +1,7 @@
-# part-timer
+# Part-timer
 
-Commit test - MohanPathania 
+## Contributors
+
+## Purpose
+
+## State
