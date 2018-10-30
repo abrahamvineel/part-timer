@@ -3,6 +3,10 @@ package csci5708.csci4176.part_timer;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -14,17 +18,39 @@ import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
 
+    private Spinner weeklyMonthly;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-        BarChart chart = (BarChart) findViewById(R.id.chart);
-
+        BarChart chart = findViewById(R.id.chart);
+        weeklyMonthly=findViewById(R.id.weeklyMonthly);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.weekly_monthly, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        weeklyMonthly.setAdapter(adapter);
         BarData data = new BarData(getXAxisValues(),getDataSet());
         chart.setData(data);
         chart.setDescription("My Chart");
         chart.animateXY(2000, 2000);
         chart.invalidate();
+    }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.off_campus:
+                if (checked)
+                    // Pirates are the best
+                    break;
+            case R.id.on_campus:
+                if (checked)
+                    // Ninjas rule
+                    break;
+        }
     }
 
     private ArrayList<BarDataSet> getDataSet() {
