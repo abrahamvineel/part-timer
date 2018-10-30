@@ -7,15 +7,44 @@
     android:layout_weight="1"
     android:orientation="vertical"
     tools:context=".StatsActivity">
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:id="@+id/off_on_weeklyMonthly"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:text="Place for profile picture and buttons"/>
+        android:layout_weight="0.3">
+        <RadioGroup
+            android:id="@+id/off_on_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15">
+
+            <RadioButton
+                android:id="@+id/off_campus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/off_campus" />
+
+            <RadioButton
+                android:id="@+id/on_campus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/on_campus"/>
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/weeklyMonthly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"/>
+
+    </LinearLayout>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
-        android:layout_weight="0.7"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="0.7" />
 </LinearLayout>
