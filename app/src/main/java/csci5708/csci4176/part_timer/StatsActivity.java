@@ -3,6 +3,7 @@ package csci5708.csci4176.part_timer;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
@@ -32,7 +33,7 @@ public class StatsActivity extends AppCompatActivity {
         weeklyMonthly.setAdapter(adapter);
         BarData data = new BarData(getXAxisValues(),getDataSet());
         chart.setData(data);
-        chart.setDescription("My Chart");
+        chart.setDescription("Stats");
         chart.animateXY(2000, 2000);
         chart.invalidate();
     }
@@ -44,11 +45,11 @@ public class StatsActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.off_campus:
                 if (checked)
-                    // Pirates are the best
+                    Log.v(getApplicationContext().getClass().getName(),"off campus");
                     break;
             case R.id.on_campus:
                 if (checked)
-                    // Ninjas rule
+                    Log.v(getApplicationContext().getClass().getName(),"on campus");
                     break;
         }
     }
