@@ -3,7 +3,7 @@
     <string name="off_campus">OFF-Campus</string>
     <string name="on_campus">ON_Campus</string>
     <string-array name="weekly_monthly">
-        <item>Weekly</item>
         <item>Monthly</item>
+        <item>Weekly</item>
     </string-array>
 </resources>
