@@ -45,6 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class StatsActivity extends AppCompatActivity {
 
     private Spinner weeklyMonthly;
+    private  RadioButton off_campus;
     private CircleImageView profileImage;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10;
     private static String profilePictureDir = "/storage/emulated/0/part-timer/profile";
@@ -55,6 +56,8 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
         checkPermissionForStorage(this);
         BarChart chart = findViewById(R.id.chart);
+        off_campus=findViewById(R.id.off_campus);
+        off_campus.setChecked(true);
         profileImage = findViewById(R.id.profile_image);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
