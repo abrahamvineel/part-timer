@@ -57,7 +57,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
-<<<<<<< HEAD
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -83,8 +83,6 @@
         android:layout_marginTop="30dp"
         />
 
-</android.support.constraint.ConstraintLayout>
-=======
 
 </LinearLayout>
->>>>>>> stats_page
+
