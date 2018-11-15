@@ -24,3 +24,35 @@ Issues with repo and commits - sorted that out
 
 #October 26
 Discussed project update, continued to add content to git repo including files generated together for our low-fidelity prototype. 
+
+#November 12
+##Discussion items:
+
+Allow users to enter work/home locations 
+Just store them for now - GPS coordinates of locations
+We should have removed home locations from our functionality. We will not only have to pull GPS locations now, but now we may have to determine a way to plot routes and generate recommended departure times.
+
+Get app to recognize when user has entered or left a specific location
+This involves accessing the GPS functionality of the phone.
+Track time spent at specific locations
+Further than checking in, we will need to constantly keep tabs on the GPS location of the user to track time spent at a location.
+
+Display this data somewhere in the application.
+We should pull from some universally accessible (within the app) pool of checkin-checkout data to populate the stats and home page. We can spoof some of this data initially, but we should try to find a way to organically add to this data through actual GPS use if possible.
+
+
+##Decisions:
+
+Storing data -  how to make it accessible  (Mohan) 
+
+GPS tracking - checkin/checkout (Dinesh) 
+
+Hammer out design (Vamsi initial, Al rework) 
+
+Project update 2 drafting/topics/maintenance (Al)
+
+Wrangle git into order (Al) 
+
+Clickstreams (Vineel) 
+
+Remove Login page and Calendar page for now
