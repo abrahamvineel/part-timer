@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button stats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
