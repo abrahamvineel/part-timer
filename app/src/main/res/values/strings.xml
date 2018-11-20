@@ -1,16 +1,11 @@
 <resources>
     <string name="app_name">Part-Timer</string>
-    <string name="page_title">Home</string>
-    <string name="greeting">Good Morning User</string>
-
-
+    <string name="page_title">Part-Timer</string>
+    <string name="greeting">Good Morning</string>
     <string name="hours">Total No Of Hours:</string>
-
-    <string name="btn_calendar">Calendar</string>
     <string name="btn_stats">Stats</string>
+    <string name="btn_home">Home</string>
+
     <string name="btn_settings">Settings</string>
     <string name="btn_logout">Logout</string>
-
-
-
 </resources>
