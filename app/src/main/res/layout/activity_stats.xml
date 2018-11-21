@@ -29,7 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="90dp"
         android:text="@string/progress_text" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="110dp"
         android:text="16" />
 
     <Spinner
