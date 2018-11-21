@@ -7,5 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:indeterminate="false"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="70"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="70dp"/>
 
 </RelativeLayout>
