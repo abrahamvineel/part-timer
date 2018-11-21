@@ -7,11 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:indeterminate="false"
+        android:progressDrawable="@drawable/circle_rotation"
+        android:background="@drawable/circle"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"
         android:progress="70"
@@ -25,8 +28,20 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="88dp" />
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="88dp"
+        android:text="@string/progress_text" />
+
+    <TextView
+        android:id="@+id/hrs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="115dp"
+        android:text="16" />
 
     <Spinner
         android:id="@+id/drop_down"
@@ -38,6 +53,12 @@
 
     </Spinner>
 
-
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="380dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/drop_down"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>
