@@ -7,6 +7,8 @@
     <color name="colorSky">#87cefa</color>
     <color name="colorCoffee">#faef87</color>
     <color name="colorGreen">#96fa87</color>
+    <color name="colorDarkGreen">#008000</color>
+    <color name="colorRed">#FF0000</color>
 
 
 </resources>
