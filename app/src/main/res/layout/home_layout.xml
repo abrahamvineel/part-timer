@@ -25,8 +25,26 @@
         android:text="@string/greeting"
         />
     <TextView
-        android:id="@+id/Hours"
+        android:id="@+id/checkIn"
         android:layout_below="@id/Greeting"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20sp"
+        android:background="@color/colorGreen"
+        android:text="Check In: "
+        />
+    <TextView
+        android:id="@+id/checkOut"
+        android:layout_below="@id/checkIn"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20sp"
+        android:background="@color/colorGreen"
+        android:text="Check Out:"
+        />
+    <TextView
+        android:id="@+id/hours"
+        android:layout_below="@id/checkOut"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="20sp"
