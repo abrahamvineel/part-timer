@@ -1,6 +1,5 @@
 package com.android.part_timer;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +29,7 @@ public class BootCompleteListener extends BroadcastReceiver {
         Log.v(TAG, "Started after restart");
         appDatabase = AppDatabase.getDatabaseInstance(context);
         mGeofencingClient = LocationServices.getGeofencingClient(context);
-        geofencing = new Geofencing((Activity)context,context, mGeofencingClient);
+        geofencing = new Geofencing(context, mGeofencingClient);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
