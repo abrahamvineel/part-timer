@@ -57,7 +57,7 @@ Source [here](https://developers.google.com/location-context/geofencing/)
 Source [here](https://developer.android.com/topic/libraries/architecture/room)
 
 ## Installation Notes
-No special installation instructions. It is installed like any other Android package.
+This app has to be installed on the phone as it will not work in the emulator. The reason being that the Geofencing API used in the app does not support emulators. On the phone, it is installed like any other Android package.
 
 ## Code Examples
 You will encounter roadblocks and problems while developing your project. Share 2-3 'problems' that your team solved while developing your project. Write a few sentences that describe your solution and provide a code snippet/block that shows your solution. Example:
@@ -78,7 +78,7 @@ AsyncTask.execute(new Runnable() {
                     }
                 })
 ```
-**Problem 2: Tracking user location using in-built GPS drained battery**
+**Problem 2: Tracking user location using inbuilt GPS drained battery**
 
 Using android LocationServices resulted in low power efficiency and poor GPS accuracy so we had to find another solution. The answer was the Geofencing - a feature also offered in Android Studio which more accurately user tracked location, preserved more battery power, and worked even when the app was not running. 
 ```
@@ -115,7 +115,7 @@ Users will be kept up to date about their hours worked during the current week a
 
 
 ### Pay calculation
-Users will be able to see roughly how much they have earned this week (dinesh)
+Users will be able to see roughly how much they have earned during the current week based on their hours worked and hourly rate. 
 
 
 ### Visualized Data
