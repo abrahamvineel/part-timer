@@ -29,19 +29,13 @@
 
         <receiver android:name="com.android.part_timer.NotificationReceiver" />
         <receiver
-            android:name="com.android.part_timer.BootCompleteListener"
-            android:directBootAware="true">
+            android:name="com.android.part_timer.BootCompleteAndGPSListener"
+            android:directBootAware="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.android.part_timer.GPSStatusBroadcastReceiver"
-            android:exported="false" >
-            <intent-filter>
                 <action android:name="android.location.PROVIDERS_CHANGED" />
             </intent-filter>
         </receiver>
-
         <activity android:name="com.android.part_timer.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
