@@ -9,166 +9,222 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:orientation="vertical"
-        android:layout_marginStart="10dp">
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
 
         <!--title-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textStyle="bold"
                 android:text="Settings"
-                android:textSize="30dp"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="30dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!--horizontal line-->
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:background="#c0c0c0"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c0c0c0" />
 
-        <!--Edit Home location-->
+        <!-- Edit work location -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textStyle="bold"
-                android:text="Edit Home location"
-                android:textSize="20dp"
+                android:text="Edit Work location"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <Button
-                android:id="@+id/homeLocation"
+                android:id="@+id/workLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Home"
-                />
-        </LinearLayout>
+                android:text="Add Work" />
 
-        <!-- Edit work location -->
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/editLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_edit_location" />
+
+                <TextView
+                    android:id="@+id/locationAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--horizontal line-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c0c0c0" />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
-
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp">
             <TextView
-                android:id="@+id/editText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:text="24h format:"
                 android:ems="10"
-                android:textStyle="bold"
-                android:text="Edit Work location"
-                android:textSize="20dp"
                 android:textColor="@android:color/black"
-                />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit Work"
-                />
-        </LinearLayout>
+                android:textSize="15dp" />
 
+        <Switch
+            android:id="@+id/hourFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:switchMinWidth="56dp"
+            android:layout_alignParentEnd="true"
+            android:textOff="OFF"
+            android:textOn="ON"
+            android:textStyle="bold" />
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c0c0c0" />
         <!--help-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <!--horizontal line-->
+
             <TextView
                 android:id="@+id/editText5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textStyle="bold"
                 android:text="Help"
+                android:textColor="@android:color/black"
                 android:textSize="20dp"
-                android:textColor="@android:color/black"
-                />
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/editText6"
-                android:layout_width="325dp"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:text="For this application to function, you must first add a home and work location."
-                android:textColor="@android:color/black"
-                android:textSize="15dp" />
+                android:layout_marginEnd="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_help" />
+
+                <TextView
+                    android:id="@+id/editText6"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="For this application to function, you must first add a home and work location."
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
 
+        <!--horizontal line-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c0c0c0" />
         <!--Contact-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/editText7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textStyle="bold"
                 android:text="Contact"
+                android:textColor="@android:color/black"
                 android:textSize="20dp"
-                android:textColor="@android:color/black"
-                />
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/editText4"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:text="For more information, email example@example.com"
-                android:textColor="@android:color/black"
-                android:textSize="15dp" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <!--Navigation-->
-        <LinearLayout
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="NAVIGATION"
-                android:layout_gravity="center"/>
+                <ImageView
+                    android:id="@+id/contactMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:id="@+id/contactInformation"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="We love to get suggestions, email part.timer@helpdesk.com"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

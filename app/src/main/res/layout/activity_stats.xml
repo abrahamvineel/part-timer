@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.android.part_timer.controller.MainActivity">
 
 
     <ProgressBar
@@ -28,8 +28,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="90dp"
         android:text="@string/progress_text" />
 
     <TextView
@@ -39,8 +39,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="110dp"
         android:text="16" />
 
     <Spinner

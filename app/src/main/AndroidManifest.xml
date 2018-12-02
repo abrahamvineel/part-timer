@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="csci5708.csci4176.part_timer">
+    package="com.android.part_timer">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <uses-feature android:name="android.hardware.location.gps" />
+
     <application
+        android:name="com.android.part_timer.PartTimerApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,25 +21,41 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDiF2269E7DgkBr5lRM5khkTl4aHY9pCn8" />
-        <service android:name=".GeofenceTransitionsIntentServices"/>
-        <receiver android:name=".BootCompleteListener" android:directBootAware="true">
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <service android:name="com.android.part_timer.geofence.GeofenceTransitionsIntentServices" />
+        <service
+            android:name=".MyBackgroundService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <receiver android:name="com.android.part_timer.NotificationReceiver" />
+        <receiver
+            android:name="com.android.part_timer.BootCompleteListener"
+            android:directBootAware="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".GPSStatusBroadcastReceiver">
+        <receiver android:name="com.android.part_timer.GPSStatusBroadcastReceiver"
+            android:exported="false" >
             <intent-filter>
-                <action android:name="android.location.MODE_CHANGED_ACTION" />
+                <action android:name="android.location.PROVIDERS_CHANGED" />
             </intent-filter>
         </receiver>
-        <activity android:name=".MainActivity">
+
+        <activity android:name="com.android.part_timer.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.android.part_timer.controller.loglist.LogItemsListActivity" />
+        <activity
+            android:name="com.android.part_timer.controller.Info_Activity"
+            android:label="Help"></activity>
     </application>
 
 </manifest>
