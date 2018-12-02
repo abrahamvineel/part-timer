@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -57,7 +58,7 @@ public class Home extends Fragment {
     private int year, month, day, hour, minute;
     private Date checkInDate = null, checkOutDate = null;
     private String checkInText, checkOutText;
-    private Boolean checkInAction = false, isPressed = false,twentyFourHour=false;
+    private Boolean checkInAction = false, isPressed = false, twentyFourHour = false;
 
     @Nullable
     @Override
@@ -84,7 +85,7 @@ public class Home extends Fragment {
         fabClose = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
         fabClock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate_clockwise);
         fabAntiClock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate_anticlockwise);
-        pullToRefresh= view.findViewById(R.id.homeLayout);
+        pullToRefresh = view.findViewById(R.id.homeLayout);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -94,19 +95,16 @@ public class Home extends Fragment {
         });
         AsyncTask.execute(new Runnable() {
             GeneralData generalData;
+
             @Override
             public void run() {
-                generalData=appDatabase.generalDataDaoModel().getHourFormat();
-                if(null!=generalData && generalData.getTwentyFourHour()){
-                    twentyFourHour=true;
+                generalData = appDatabase.generalDataDaoModel().getHourFormat();
+                if (null != generalData && generalData.getTwentyFourHour()) {
+                    twentyFourHour = true;
                 }
 
             }
         });
-        if (!isNetworkAvailable()) {
-            new DialogAlert(getContext()).buildOkDialog(Constants.NO_INTERNET_TITLE,
-                    Constants.NO_INTERNET_MESSAGE).show();
-        }
         setLog();
         greeting.setText(Utils.greeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
         checkInText = (String) checkInTime.getText();
@@ -130,7 +128,7 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Log.v(TAG, "Floating add pressed");
                 fabAnimation();
-                AddLogTimeDialog addLogTimeDialog=new AddLogTimeDialog(getContext(), getActivity());
+                AddLogTimeDialog addLogTimeDialog = new AddLogTimeDialog(getContext(), getActivity());
                 addLogTimeDialog.createDialog(addLogTimeDialog.showLogDialog().show());
             }
         });
@@ -184,6 +182,15 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (!isNetworkAvailable()) {
+            new DialogAlert(getContext()).buildOkDialog(Constants.NO_INTERNET_TITLE,
+                    Constants.NO_INTERNET_MESSAGE).show();
+        }else{
+            if(!checkGpsStatus(getContext())){
+                new DialogAlert(getContext()).buildOkDialog(Constants.NO_GPS_TITLE,
+                        Constants.NO_GPS_MESSAGE).show();
+            }
+        }
         setLog();
     }
 
@@ -265,6 +272,7 @@ public class Home extends Fragment {
             final Date selectedDate = selectedCalendar.getTime();
             AsyncTask.execute(new Runnable() {
                 String message = "No message";
+
                 @Override
                 public void run() {
                     try {
@@ -286,16 +294,16 @@ public class Home extends Fragment {
                             });
                         } else {
                             LogData logData = appDatabase.logDataDaoModel().getLogFromCheckIn(checkInDate.getTime());
-                            LogData betweenData=appDatabase.logDataDaoModel().getLogDateBetween(logData.getId(),selectedDate.getTime());
-                            if(betweenData==null || logData.getId()==betweenData.getId()) {
-                            if (checkInAction) {
-                                logData.setCheckIn(selectedDate);
-                            } else {
-                                logData.setCheckOut(selectedDate);
-                            }
-                            //Log.v(TAG,logData.getId()+","+logData.getCheckIn().toString()+","+
-                              //      logData.getCheckOut()+ ","+betweenData.getId()+","+betweenData.getCheckIn()+","+betweenData.getCheckOut());
-                                Log.v(TAG,"in between"+betweenData);
+                            LogData betweenData = appDatabase.logDataDaoModel().getLogDateBetween(logData.getId(), selectedDate.getTime());
+                            if (betweenData == null || logData.getId() == betweenData.getId()) {
+                                if (checkInAction) {
+                                    logData.setCheckIn(selectedDate);
+                                } else {
+                                    logData.setCheckOut(selectedDate);
+                                }
+                                //Log.v(TAG,logData.getId()+","+logData.getCheckIn().toString()+","+
+                                //      logData.getCheckOut()+ ","+betweenData.getId()+","+betweenData.getCheckIn()+","+betweenData.getCheckOut());
+                                Log.v(TAG, "in between" + betweenData);
                                 appDatabase.logDataDaoModel().update(logData);
                                 setLog();
                                 getActivity().runOnUiThread(new Runnable() {
@@ -304,8 +312,8 @@ public class Home extends Fragment {
                                         Toast.makeText(getContext(), Constants.LOGTIME_UPDATE_SUCCESS, Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                            }else{
-                                Log.v(TAG,betweenData.getId()+"");
+                            } else {
+                                Log.v(TAG, betweenData.getId() + "");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -328,8 +336,8 @@ public class Home extends Fragment {
             @Override
             public void run() {
                 final LogData logData = appDatabase.logDataDaoModel().getLogInfo();
-                final List<LogData> weekLogList=appDatabase.logDataDaoModel().getWeekLogs();
-                if(logData!=null) {
+                final List<LogData> weekLogList = appDatabase.logDataDaoModel().getWeekLogs();
+                if (logData != null) {
 
                     checkInTime.post(new Runnable() {
                         @Override
@@ -374,7 +382,7 @@ public class Home extends Fragment {
                             totalTimeStay.setText(dateDifference(weekLogList));
                         }
                     });
-                }else{
+                } else {
                     checkInTime.post(new Runnable() {
                         @Override
                         public void run() {
@@ -397,10 +405,10 @@ public class Home extends Fragment {
 
     public String dateDifference(List<LogData> weekLogDataList) {
 
-        long totalTimeMillis=0L;
+        long totalTimeMillis = 0L;
         //milliseconds
-        for(LogData logData:weekLogDataList){
-            if(logData.getCheckOut()!=null) {
+        for (LogData logData : weekLogDataList) {
+            if (logData.getCheckOut() != null) {
                 totalTimeMillis = totalTimeMillis + (logData.getCheckOut().getTime() - logData.getCheckIn().getTime());
             }
         }
@@ -416,6 +424,7 @@ public class Home extends Fragment {
         return String.format("%02d", (int) (hours)) + ":" + String.format("%02d", (int) (minutes));
 
     }
+
     private boolean isNetworkAvailable() {
         Boolean networkAvailable = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -427,4 +436,10 @@ public class Home extends Fragment {
         }
         return networkAvailable;
     }
+
+    public boolean checkGpsStatus(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+
 }
