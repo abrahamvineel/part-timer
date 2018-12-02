@@ -67,7 +67,7 @@ public class Settings extends Fragment {
          twentyHour=view.findViewById(R.id.hourFormat);
         appDatabase = AppDatabase.getDatabaseInstance(getActivity());
         mGeofencingClient = LocationServices.getGeofencingClient(getActivity());
-        geofencing = new Geofencing(getActivity(), getContext(), mGeofencingClient);
+        geofencing = new Geofencing( getContext(), mGeofencingClient);
         checkPremission();
         AsyncTask.execute(new Runnable() {
             List<LocationData> locationDataList;
