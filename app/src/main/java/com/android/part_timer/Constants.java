@@ -30,6 +30,10 @@ public final class Constants {
     public static final String NO_INTERNET_TITLE = "No Internet Connection";
     public static final String NO_INTERNET_MESSAGE = "Please connect to internet to track the Log time";
 
+    //No GPS
+    public static final String NO_GPS_TITLE = "No GPS";
+    public static final String NO_GPS_MESSAGE = "Please turn on the GPS";
+
     //Greeting message
     public static final String MORNING = "Good Morning";
     public static final String AFTERNOON = "Good Afternoon";
