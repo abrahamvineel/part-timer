@@ -1,6 +1,5 @@
 package com.android.part_timer.geofence;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -24,20 +23,18 @@ public class Geofencing {
 
     public static final String TAG = Geofencing.class.getSimpleName();
     private Context mContext;
-    private Activity mainActivity;
     protected ArrayList<Geofence> mGeofenceList;
     private PendingIntent mGeofencePendingIntent;
     private GeofencingClient mGeofencingClient;
 
-    public Geofencing(Activity activity, Context context, GeofencingClient client) {
+    public Geofencing( Context context, GeofencingClient client) {
         mContext = context;
         mGeofencingClient = client;
-        mainActivity = activity;
         mGeofenceList = new ArrayList<>();
     }
 
     public void createGeofence(HashMap<String, LatLng> map) {
-        //removeGeofence();
+
         for (Map.Entry<String, LatLng> entry : map.entrySet()) {
 
             Log.v(TAG, "latitude: " + entry.getValue().latitude + ", longitude: " + entry.getValue().longitude);
@@ -83,13 +80,13 @@ public class Geofencing {
     public void addGeofence() {
         try {
             mGeofencingClient.addGeofences(geofencingRequest(), getGeofencePendingIntent())
-                    .addOnSuccessListener(mainActivity, new OnSuccessListener<Void>() {
+                    .addOnSuccessListener( new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.v(TAG, "Geo fence successfully added");
                         }
                     })
-                    .addOnFailureListener(mainActivity, new OnFailureListener() {
+                    .addOnFailureListener( new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.v(TAG, "Geo fence failed to add");
@@ -106,14 +103,14 @@ public class Geofencing {
     public void removeGeofence() {
         try {
             mGeofencingClient.removeGeofences(getGeofencePendingIntent())
-                    .addOnSuccessListener(mainActivity, new OnSuccessListener<Void>() {
+                    .addOnSuccessListener( new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.v(TAG, "Geo fence removed successfully");
                             return;
                         }
                     })
-                    .addOnFailureListener(mainActivity, new OnFailureListener() {
+                    .addOnFailureListener( new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             // Failed to remove geofences
