@@ -20,7 +20,7 @@
         <tr>  
         <td>Al Brink</td>
         <td>B00584349</td>
-        <td>al.brink@outlook.com</td>
+        <td>al663745@dal.ca</td>
     </tr>
       <tr>  
         <td>Dinesh K</td>
