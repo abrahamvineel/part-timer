@@ -3,6 +3,7 @@ package com.android.part_timer;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -27,26 +28,28 @@ public class BootCompleteListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.v(TAG, "Started after restart");
-        appDatabase = AppDatabase.getDatabaseInstance(context);
-        mGeofencingClient = LocationServices.getGeofencingClient(context);
-        geofencing = new Geofencing(context, mGeofencingClient);
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                List<LocationData> locationDataList;
-                LinkedHashMap<String, LatLng> location =
-                        new LinkedHashMap<>();
-                locationDataList = appDatabase.locationDataDaoModel().loadLocations();
-                for (LocationData locationData : locationDataList) {
-                    String placeName = locationData.getPlaceID();
-                    LatLng latLng=new LatLng(locationData.getLatitude(),locationData.getLongitude());
-                    location.put(placeName, latLng);
+        final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            appDatabase = AppDatabase.getDatabaseInstance(context);
+            mGeofencingClient = LocationServices.getGeofencingClient(context);
+            geofencing = new Geofencing(context, mGeofencingClient);
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    List<LocationData> locationDataList;
+                    LinkedHashMap<String, LatLng> location =
+                            new LinkedHashMap<>();
+                    locationDataList = appDatabase.locationDataDaoModel().loadLocations();
+                    for (LocationData locationData : locationDataList) {
+                        String placeName = locationData.getPlaceID();
+                        LatLng latLng = new LatLng(locationData.getLatitude(), locationData.getLongitude());
+                        location.put(placeName, latLng);
+                    }
+                    geofencing.removeGeofence();
+                    geofencing.createGeofence(location);
+                    geofencing.addGeofence();
                 }
-                geofencing.removeGeofence();
-                geofencing.createGeofence(location);
-                geofencing.addGeofence();
-            }
-        });
-
+            });
+        }
     }
 }
