@@ -26,9 +26,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service android:name="com.android.part_timer.geofence.GeofenceTransitionsIntentServices" />
-        <service
-            android:name=".MyBackgroundService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <receiver android:name="com.android.part_timer.NotificationReceiver" />
         <receiver
             android:name="com.android.part_timer.BootCompleteListener"
