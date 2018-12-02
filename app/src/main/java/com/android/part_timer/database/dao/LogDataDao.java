@@ -19,40 +19,36 @@ import com.android.part_timer.database.entity.LogData;
 @Dao
 public interface LogDataDao {
 
+
     @Insert()
     void insert(LogData logData);
 
     @Query("select * from log_data")
     List<LogData> logData();
 
-    /*@Query("update log_data set checkIn=:checkIn where id=:id")
-    void setCheckIn(Date checkIn,int id);
-
-    @Query("update log_data set checkOut=Date(:checkOut) and tracking=:tracking where id=:id")
-    void setCheckOut(Date checkOut,Boolean tracking, int id);*/
-
     @Update()
     void update(LogData logData);
 
+    //get the latest log time to show in home page
     @Query("select * FROM log_data order by checkIn DESC LIMIT 1")
     LogData getLogInfo();
 
+    //get all the log times to show it to user to edit and delete
     @Query("select * from log_data order by checkIn desc")
     LiveData<List<LogData>> getAllLogs();
 
-
+   // log times for specified date
     @Query("select * from log_data where checkIn=:date")
     LogData getLogFromCheckIn(long date);
-/*
-    @Query("select * from log_data where id <> :id and (:checkInDate between checkIn and checkOut) or (:checkOutDate between checkIn and checkOut)")
-    LogData getLogDateBetween(int id, long checkInDate, long checkOutDate);*/
 
+    //get the week log times to calculate weekly hours
     @Query("select * from log_data where strftime('%Y-%W', checkIn / 1000, 'unixepoch','localtime')== strftime('%Y-%W',date('now','localtime'))")
     List<LogData> getWeekLogs();
 
+
+    //query to check entered date from date listeners is already available
     @Query("select * from log_data where id <> :id and (:selectedDate between checkIn and checkOut)")
     LogData getLogDateBetween(int id, long selectedDate);
-
 
     @Delete
     void deleteLocation(LogData logData);
