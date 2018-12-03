@@ -162,5 +162,5 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Design guides [Prototype and ClickStream tool](https://proto.io/)
 - Research material - [Android Developer Guides](https://developer.android.com/guide/)
 - Android libraries: [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room), Multi-threading [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask)
-- Chart library: [MPAndroidChart] (https://github.com/PhilJay/MPAndroidChart)
+- Chart library: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 
