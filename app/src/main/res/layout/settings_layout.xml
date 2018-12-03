@@ -39,8 +39,8 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#c0c0c0" />
 
         <!-- Edit work location -->
@@ -94,84 +94,78 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#c0c0c0" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24h format:"
                 android:ems="10"
+                android:text="24h format:"
                 android:textColor="@android:color/black"
                 android:textSize="15dp" />
 
-        <Switch
-            android:id="@+id/hourFormat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:switchMinWidth="56dp"
-            android:layout_alignParentEnd="true"
-            android:textOff="OFF"
-            android:textOn="ON"
-            android:textStyle="bold" />
+            <Switch
+                android:id="@+id/hourFormat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:switchMinWidth="56dp"
+                android:textOff="OFF"
+                android:textOn="ON"
+                android:textStyle="bold" />
         </RelativeLayout>
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#c0c0c0" />
-        <!--help-->
+
+        <!--pay per hour-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <!--horizontal line-->
-
-            <TextView
-                android:id="@+id/editText5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:text="Help"
-                android:textColor="@android:color/black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
+            android:layout_weight="1">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_help" />
+                android:layout_weight=".6">
 
                 <TextView
-                    android:id="@+id/editText6"
-                    android:layout_width="325dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
-                    android:text="For this application to function, you must first add a home and work location."
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp" />
+                    android:text="Pay per hour :"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/payHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/payHourButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="0.2"
+                android:text="Ok" />
         </LinearLayout>
 
         <!--horizontal line-->
@@ -179,8 +173,8 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#c0c0c0" />
         <!--Contact-->
         <LinearLayout
