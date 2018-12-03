@@ -171,7 +171,14 @@ public class Stats extends Fragment {
                                 BarData weekly_data = new BarData(labels, bardataset);
                                 weekly_data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
                                 barChart.notifyDataSetChanged(); // let the chart know it's data changed
-                                barChart.invalidate(); // refresh
+                                if (weekly_data!=null){
+                                    barChart.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            barChart.invalidate();
+                                        }
+                                    });
+                                } // refresh
 
 
                                 barChart.setData(weekly_data);
@@ -238,7 +245,14 @@ public class Stats extends Fragment {
                                 BarData data_monthly = new BarData(labels_monthly, bardataset_monthly);
                                 data_monthly.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
                                 barChart.notifyDataSetChanged(); // let the chart know it's data changed
-                                barChart.invalidate(); // refresh
+                                if (data_monthly!=null){
+                                    barChart.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            barChart.invalidate();
+                                        }
+                                    });
+                                } // refresh
 
                                 barChart.setData(data_monthly);
                                 barChart.getXAxis().setDrawGridLines(false);
@@ -319,7 +333,14 @@ public class Stats extends Fragment {
                         barChart.setData(data);
 
                         barChart.notifyDataSetChanged(); // let the chart know it's data changed
-                        barChart.invalidate(); // refresh
+                        if (data!=null){
+                            barChart.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    barChart.invalidate();
+                                }
+                            });
+                        } // refresh
                         barChart.getXAxis().setDrawGridLines(false);
                         barChart.getAxisLeft().setDrawGridLines(false);
                         barChart.getAxisRight().setDrawGridLines(false);
