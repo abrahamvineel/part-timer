@@ -45,9 +45,11 @@ public interface LogDataDao {
     @Query("select * from log_data where strftime('%Y-%W', checkIn / 1000, 'unixepoch','localtime')== strftime('%Y-%W',date('now','localtime'))")
     List<LogData> getWeekLogs();
 
+    //get data per day in current week
     @Query("select id,place_id,month,monthly_total,(checkOut-checkIn) as weekly_diff, strftime('%w', checkIn / 1000, 'unixepoch','localtime') as dayNum from log_data where strftime('%Y-%W', checkIn / 1000, 'unixepoch','localtime')== strftime('%Y-%W',date('now','localtime'))")
     List<LogData> getWeek();
 
+    //get monthly data
     @Query("select id,place_id,weekly_diff,dayNum,sum(checkOut-checkIn) as monthly_total, strftime('%m', checkIn / 1000, 'unixepoch','localtime')as month from log_data group by strftime('%m', checkIn / 1000, 'unixepoch','localtime')")
     List<LogData> getMonthly();
 
