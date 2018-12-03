@@ -13,17 +13,17 @@
    	<td><b>Email ID</b></td>
         </tr>
   <tr>  
-        <td>Abraham Vineel K</td>
+        <td>Abraham Vineel Katikala</td>
         <td> B00793815</td>
         <td>ab760856@dal.ca</td>
     </tr>
         <tr>  
-        <td>Al Brink</td>
+        <td>Albertus Brink</td>
         <td>B00584349</td>
         <td>al663745@dal.ca</td>
     </tr>
       <tr>  
-        <td>Dinesh K</td>
+        <td>Dinesh Kuncham</td>
         <td>B00801162</td>
         <td>dinesh.kuncham@dal.ca</td>
     </tr>
@@ -33,7 +33,7 @@
         <td>mohanp@dal.ca</td>
     </tr>
       <tr>  
-        <td>Vamsi D</td>
+        <td>Vamsi Krishna Reddy Dwarsala</td>
         <td>B00800531</td>
         <td>vm420113@dal.ca</td>
     </tr>
@@ -162,4 +162,5 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Design guides [Prototype and ClickStream tool](https://proto.io/)
 - Research material - [Android Developer Guides](https://developer.android.com/guide/)
 - Android libraries: [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room), Multi-threading [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask)
+- Chart library: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 

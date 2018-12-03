@@ -29,7 +29,28 @@
     <string name="btn_logout">Logout</string>
 
     <string name="info">info</string>
-    <string name="info_text">Welcome to Part-timer</string>
+    <string name="info_text">Welcome to Part-timer
+
+        ----------------------------------------------------------------------------\n\n
+        Home:\n\n
+        The Home page shows the check in and check out times when you enter and exit a location. You may edit these logs at any time.
+        The Total number of hours worked on any given day and total estimated pay for the current week will be shown in the home page.
+        \n\n
+        ----------------------------------------------------------------------------\n\n
+        Stats:
+        \n\n
+        The Stats page has a circular progress bar that shows the total hours completed during the current week. A bar chart just bellow that displays the hours worked each day of the week.
+        You can switch to monthly stats option which shows the total number of hours worked during the current month.
+
+        \n\n
+        ---------------------------------------------------------------------------- \n\n
+        Settings:\n\n
+        In the settings page, you can set your work location. You can also switch between a 24 hour and 12 hour time format.
+        You can enter your hourly rate of pay for your current part time job in order to allow us to display your weekly estimate pay displayed on the home page.
+        You can contact us by clicking on the mail icon in the Settings page.
+        \n\n
+
+    </string>
 
     <!--add_logtime.xml-->
     <string name="checkIn">Check In</string>

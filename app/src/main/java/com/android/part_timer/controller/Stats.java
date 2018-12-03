@@ -32,20 +32,20 @@ import static com.android.part_timer.controller.Home.appDatabase;
 
 public class Stats extends Fragment {
 
+    //Variables to display the values in barchart are initialized
     double mon_val = 0,tue_val = 0, wed_val = 0,
             thu_val = 0,fri_val = 0, sat_val = 0,
             sun_val = 0,jan_val=0,feb_val=0,mar_val=0,apr_val=0,
             may_val=0,jun_val=0,jul_val=0,aug_val=0,
             sep_val=0,oct_val=0,nov_val=0,dec_val=0;
     int month_num, day_num;
-    LogData mon, tue, wed, thu, fri, sat, sun;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         final View v = inflater.inflate(R.layout.activity_stats, container, false);
-
+        //drop_down spinner to select between week and month
         Spinner drop_down;
         final ArrayAdapter<CharSequence> adapter;
         AsyncTask.execute(new Runnable() {
@@ -53,8 +53,11 @@ public class Stats extends Fragment {
             double val ;
             @Override
             public void run() {
+                //Retrieving list of weekly data form the database
                 final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
                 for (int j = 0; j < logData.size(); j++) {
+                    //Accessing the list data per day number of assigning the difference in checkout and checkin time
+                    // to the respective values in the day
                     day_num = logData.get(j).getDayNum();
                     switch (day_num) {
                         case 0:
@@ -80,17 +83,23 @@ public class Stats extends Fragment {
                             continue;
                     }
                 }
+                //Calculating the sum of values to set as the progress value
                 val= mon_val+tue_val+wed_val+thu_val+fri_val+sat_val+sun_val;
-                progress_val = ((double)val /20)*100;
-                ProgressBar progress = (ProgressBar) v.findViewById(R.id.progress);
+                progress_val = (val /20)*100;
+                ProgressBar progress = v.findViewById(R.id.progress);
                 progress.setProgress((int) progress_val);
-                TextView progress_text = (TextView) v.findViewById(R.id.hrs);
-                progress_text.setText((int)val + "");
+                TextView progress_text = v.findViewById(R.id.hrs);
+                //If the value is int we set the integral part or else we will set the float value
+                if ((int) val == val) {
+                    progress_text.setText((int) val + "");
+                } else {
+                    progress_text.setText(String.format("%.2f",val));
+                }
             }
         });
 
         final BarChart barChart = v.findViewById(R.id.chart);
-        drop_down = (Spinner) v.findViewById(R.id.drop_down);
+        drop_down = v.findViewById(R.id.drop_down);
         adapter = ArrayAdapter.createFromResource(getContext(), R.array.drop_down, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         drop_down.setAdapter(adapter);
@@ -100,7 +109,9 @@ public class Stats extends Fragment {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
+                        //Retrieving list of weekly data form the database
                         final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
+                        //Retrieving list of monthly data form the database
                         List<LogData> monthLogdata = appDatabase.logDataDaoModel().getMonthly();
                         for (int j = 0; j < logData.size(); j++) {
                             day_num = logData.get(j).getDayNum();
@@ -129,6 +140,7 @@ public class Stats extends Fragment {
                             }
                         }
 
+                        //Based on the drop down selected it goes into the respective case and displays the value for either week or month
                         switch (i)
                         {
                             case 0:
@@ -155,8 +167,8 @@ public class Stats extends Fragment {
                                 labels.add("Sun");
 
                                 BarData weekly_data = new BarData(labels, bardataset);
-                                weekly_data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
-                                barChart.notifyDataSetChanged(); // let the chart know it's data changed
+                                weekly_data.notifyDataChanged();
+                                barChart.notifyDataSetChanged();
                                 if (weekly_data!=null){
                                     barChart.post(new Runnable() {
                                         @Override
@@ -164,8 +176,7 @@ public class Stats extends Fragment {
                                             barChart.invalidate();
                                         }
                                     });
-                                } // refresh
-
+                                }
 
                                 barChart.setData(weekly_data);
                                 barChart.getXAxis().setDrawGridLines(false);
@@ -229,8 +240,8 @@ public class Stats extends Fragment {
                                 labels_monthly.add("Dec");
 
                                 BarData data_monthly = new BarData(labels_monthly, bardataset_monthly);
-                                data_monthly.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
-                                barChart.notifyDataSetChanged(); // let the chart know it's data changed
+                                data_monthly.notifyDataChanged();
+                                barChart.notifyDataSetChanged();
                                 if (data_monthly!=null){
                                     barChart.post(new Runnable() {
                                         @Override
@@ -238,7 +249,7 @@ public class Stats extends Fragment {
                                             barChart.invalidate();
                                         }
                                     });
-                                } // refresh
+                                }
 
                                 barChart.setData(data_monthly);
                                 barChart.getXAxis().setDrawGridLines(false);
@@ -247,24 +258,22 @@ public class Stats extends Fragment {
                                 barChart.getLegend().setEnabled(false);
                                 barChart.setDescription("");
                                 barChart.setTouchEnabled(false);
-                                //barChart.animateY(250);
                                 break;
                         }
                     }
                 });
             }
 
+            //To display the barchart when no option is selected
+            //When no option in the drop_down is selected weekly_data is shown by default
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // LogData mon, tue, wed, thu, fri, sat, sun;
-                        //int mon_val =0, tue_val=0, wed_val=0,thu_val=0,fri_val=0,sat_val=0,sun_val=0;
                         final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
                         for (int j = 0; j < logData.size(); j++) {
                             day_num = logData.get(j).getDayNum();
-                            Log.v(TAG,"day num in nothing selected"+day_num);
                             switch (day_num) {
                                 case 0:
                                     sun_val = milliToHours(logData.get(j).getWeekly_diff());
@@ -276,19 +285,15 @@ public class Stats extends Fragment {
                                     tue_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 3:
-                                    //wed = logData.get(j);
                                     wed_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 4:
-                                    //thu = logData.get(j);
                                     thu_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 5:
-                                    //fri = logData.get(j);
                                     fri_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 6:
-                                    //sat = logData.get(j);
                                     sat_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                             }
@@ -315,9 +320,9 @@ public class Stats extends Fragment {
                         labels.add("Sun");
 
                         BarData data = new BarData(labels, bardataset);
-                        data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
+                        data.notifyDataChanged();
                         barChart.setData(data);
-                        barChart.notifyDataSetChanged(); // let the chart know it's data changed
+                        barChart.notifyDataSetChanged();
                         if (data!=null){
                             barChart.post(new Runnable() {
                                 @Override
@@ -325,7 +330,7 @@ public class Stats extends Fragment {
                                     barChart.invalidate();
                                 }
                             });
-                        } // refresh
+                        }
                         barChart.getXAxis().setDrawGridLines(false);
                         barChart.getAxisLeft().setDrawGridLines(false);
                         barChart.getAxisRight().setDrawGridLines(false);
@@ -341,30 +346,6 @@ public class Stats extends Fragment {
         return v;
     }
 
-
-
-    public double dateDifference(Date startDate, Date endDate) {
-
-        //milliseconds
-        long difference = endDate.getTime() - startDate.getTime();
-        Log.v(TAG, "diff" + difference);
-
-        long secondsInMilli = 1000;
-        long minutesInMilli = secondsInMilli * 60;
-        long hoursInMilli = minutesInMilli * 60;
-
-        long hours = (long) ((double)difference / hoursInMilli);
-        Log.v(TAG, "hours " + hours);
-        difference = difference % hoursInMilli;
-
-        double minutes = difference / minutesInMilli;
-        minutes = minutes/60;
-
-        double total = (int) hours + minutes;
-        return total;
-
-    }
-
     //function to convert milliseconds to hours
     public double milliToHours(long milli) {
 
@@ -376,6 +357,5 @@ public class Stats extends Fragment {
         Log.v(TAG, " hours " + hrs);
         return hrs;
     }
-
 }
 
