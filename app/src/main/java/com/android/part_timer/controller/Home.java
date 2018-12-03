@@ -42,6 +42,8 @@ import com.android.part_timer.database.entity.GeneralData;
 import com.android.part_timer.database.entity.LocationData;
 import com.android.part_timer.database.entity.LogData;
 
+import static com.android.part_timer.Constants.PAY_INFO_MESSAGE;
+import static com.android.part_timer.Constants.PAY_INFO_TITLE;
 import static com.android.part_timer.Utils.formatDate;
 
 public class Home extends Fragment {
@@ -52,7 +54,7 @@ public class Home extends Fragment {
     private FloatingActionButton floatingMenu_add, floatingAdd, floatingEdit;
     private Animation fabOpen, fabClose, fabClock, fabAntiClock;
     public static AppDatabase appDatabase;
-    private ImageView checkInEdit, checkInDelete, checkOutEdit;
+    private ImageView checkInEdit, checkInDelete, checkOutEdit,payInfo;
     private TextView floating_edit_text, floating_add_text, greeting, estimatedPay;
     private LinearLayout checkInActionLayout, checkOutActionLayout;
     private SwipeRefreshLayout pullToRefresh;
@@ -77,6 +79,7 @@ public class Home extends Fragment {
         checkOutActionLayout = view.findViewById(R.id.checkOutAction);
         totalTimeStay = view.findViewById(R.id.hours);
         estimatedPay = view.findViewById(R.id.estimatedPay);
+        payInfo=view.findViewById(R.id.payInfo);
         floatingMenu_add = view.findViewById(R.id.floatingMenu_add);
         floatingAdd = view.findViewById(R.id.floating_add);
         floating_add_text = view.findViewById(R.id.floating_add_text);
@@ -123,6 +126,12 @@ public class Home extends Fragment {
         if (null == checkOutText || checkOutText.equals("")) {
             checkOutActionLayout.setVisibility(View.INVISIBLE);
         }
+        payInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DialogAlert(getContext()).buildOkDialog(PAY_INFO_TITLE,PAY_INFO_MESSAGE).setIcon(R.drawable.ic_info_inline).show();
+            }
+        });
         floatingMenu_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
