@@ -29,7 +29,28 @@
     <string name="btn_logout">Logout</string>
 
     <string name="info">info</string>
-    <string name="info_text">Welcome to Part-timer</string>
+    <string name="info_text">Welcome to Part-timer
+
+        ----------------------------------------------------------------------------\n\n
+        Home:\n\n
+        Home page shows the check in and check out times when the user enters and exits the location. The user has the previlege to edit and add log times.
+        Total number of hours worked on that week and total estimated pay will be show in the home page.
+        \n\n
+        ----------------------------------------------------------------------------\n\n
+        Stats:
+        \n\n
+        Stats page show the circular progress bar that shows hours completed in that weeek. Bar char displays the daily hours worked in the current weeek.
+        The user can switch to monthly stats which sho the total number of hours worked in that month.
+
+        \n\n
+        ---------------------------------------------------------------------------- \n\n
+        Settings:\n\n
+        In the settings page user can add the work location. THe user can also switch between 24 hours and 12 hours time format.
+        The user can enter the pay amount per hour which is shown as estimated pay in the home page.
+        The user can contact us by clicking on the mail icon which redirects the user to mail application.
+        \n\n
+
+    </string>
 
 
 </resources>
