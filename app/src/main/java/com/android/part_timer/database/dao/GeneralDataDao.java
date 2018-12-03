@@ -13,8 +13,9 @@ public interface GeneralDataDao {
     @Insert
     void insert(GeneralData generalData);
 
-    @Query("select id, twentyFourHour from general_data")
-    GeneralData getHourFormat();
+    @Query("select * from general_data")
+    GeneralData getGeneralSettings();
+
 
     @Update
     void update(GeneralData generalData);
