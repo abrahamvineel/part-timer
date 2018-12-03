@@ -25,7 +25,9 @@ public final class Constants {
 
     //Toast
     public static final String LOGTIME_UPDATE_SUCCESS = "Successfully Updated Log times";
+    public static final String UPDATE_SUCCESS = "Successfully Updated";
 
+    public static final String DOLLAR = "$";
     //No Internet
     public static final String NO_INTERNET_TITLE = "No Internet Connection";
     public static final String NO_INTERNET_MESSAGE = "Please connect to internet to track the Log time";
