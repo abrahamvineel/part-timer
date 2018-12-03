@@ -75,6 +75,7 @@ public class Settings extends Fragment {
         mGeofencingClient = LocationServices.getGeofencingClient(getActivity());
         geofencing = new Geofencing(getContext(), mGeofencingClient);
         checkPremission();
+        //get the twenty-four hour format and pay per hour from DB
         AsyncTask.execute(new Runnable() {
             List<LocationData> locationDataList;
             GeneralData generalData;
