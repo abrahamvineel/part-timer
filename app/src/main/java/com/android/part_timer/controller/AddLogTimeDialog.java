@@ -113,7 +113,7 @@ public class AddLogTimeDialog {
                     }
                 });
                 GeneralData generalData;
-                generalData = appDatabase.generalDataDaoModel().getHourFormat();
+                generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
                 if (null != generalData && generalData.getTwentyFourHour()) {
                     twentyFourHour = true;
                 }
