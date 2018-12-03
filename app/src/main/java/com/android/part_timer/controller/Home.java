@@ -39,6 +39,7 @@ import com.android.part_timer.Utils;
 import com.android.part_timer.controller.loglist.LogItemsListActivity;
 import com.android.part_timer.database.AppDatabase;
 import com.android.part_timer.database.entity.GeneralData;
+import com.android.part_timer.database.entity.LocationData;
 import com.android.part_timer.database.entity.LogData;
 
 import static com.android.part_timer.Utils.formatDate;
@@ -52,10 +53,12 @@ public class Home extends Fragment {
     private Animation fabOpen, fabClose, fabClock, fabAntiClock;
     public static AppDatabase appDatabase;
     private ImageView checkInEdit, checkInDelete, checkOutEdit;
-    private TextView floating_edit_text, floating_add_text, greeting,estimatedPay;
+    private TextView floating_edit_text, floating_add_text, greeting, estimatedPay;
     private LinearLayout checkInActionLayout, checkOutActionLayout;
     private SwipeRefreshLayout pullToRefresh;
-    private int year, month, day, hour, minute,payPerHour=0;
+    private int year, month, day, hour, minute;
+    private double payPerHour = 0;
+    private List<LocationData> locationDataList;
     private Date checkInDate = null, checkOutDate = null;
     private String checkInText, checkOutText;
     private Boolean checkInAction = false, isPressed = false, twentyFourHour = false;
@@ -73,7 +76,7 @@ public class Home extends Fragment {
         checkInActionLayout = view.findViewById(R.id.checkInAction);
         checkOutActionLayout = view.findViewById(R.id.checkOutAction);
         totalTimeStay = view.findViewById(R.id.hours);
-        estimatedPay=view.findViewById(R.id.estimatedPay);
+        estimatedPay = view.findViewById(R.id.estimatedPay);
         floatingMenu_add = view.findViewById(R.id.floatingMenu_add);
         floatingAdd = view.findViewById(R.id.floating_add);
         floating_add_text = view.findViewById(R.id.floating_add_text);
@@ -100,11 +103,12 @@ public class Home extends Fragment {
             @Override
             public void run() {
                 generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
+                locationDataList = appDatabase.locationDataDaoModel().loadLocations();
                 if (null != generalData && generalData.getTwentyFourHour()) {
                     twentyFourHour = true;
                 }
-                if (null != generalData && generalData.getPayPerHour() > 0){
-                    payPerHour=generalData.getPayPerHour();
+                if (null != generalData && generalData.getPayPerHour() > 0) {
+                    payPerHour = generalData.getPayPerHour();
                 }
             }
         });
@@ -131,10 +135,15 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Log.v(TAG, "Floating add pressed");
                 fabAnimation();
-                AddLogTimeDialog addLogTimeDialog = new AddLogTimeDialog(getContext(), getActivity());
-                addLogTimeDialog.createDialog(addLogTimeDialog.showLogDialog().show());
+                if (locationDataList.size() > 0) {
+                    AddLogTimeDialog addLogTimeDialog = new AddLogTimeDialog(getContext(), getActivity());
+                    addLogTimeDialog.createDialog(addLogTimeDialog.showLogDialog().show());
+                } else {
+                    new DialogAlert(getContext()).buildOkDialog("No Work Location", "Please add work location").show();
+                }
             }
         });
+
         floatingEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,7 +153,7 @@ public class Home extends Fragment {
                 startActivity(intent);
             }
         });
-        checkInEdit.setOnClickListener(new View.OnClickListener() {
+        checkInEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.v(TAG, "check in text in edit button" + checkInText);
@@ -157,7 +166,7 @@ public class Home extends Fragment {
                 checkInDatePickerDialog.show();
             }
         });
-        checkOutEdit.setOnClickListener(new View.OnClickListener() {
+        checkOutEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.v(TAG, "check out text in edit button" + checkOutText);
@@ -170,7 +179,7 @@ public class Home extends Fragment {
                 checkOutDatePickerDialog.show();
             }
         });
-        checkInDelete.setOnClickListener(new View.OnClickListener() {
+        checkInDelete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 if (null != checkInDate) {
@@ -382,11 +391,12 @@ public class Home extends Fragment {
                     totalTimeStay.post(new Runnable() {
                         @Override
                         public void run() {
-                            String time=dateDifference(weekLogList);
+                            String time = dateDifference(weekLogList);
                             totalTimeStay.setText(time);
-                            int hours=Integer.parseInt(time.split(":")[0]);int min=Integer.parseInt(time.split(":")[1]);
-                            double pay=(hours*payPerHour)+((double)min/60)*payPerHour;
-                            estimatedPay.setText(Constants.DOLLAR+String.format("%.2f",pay));
+                            int hours = Integer.parseInt(time.split(":")[0]);
+                            int min = Integer.parseInt(time.split(":")[1]);
+                            double pay = (hours * payPerHour) + ((double) min / 60) * payPerHour;
+                            estimatedPay.setText(Constants.DOLLAR + String.format("%.2f", pay));
                         }
                     });
                 } else {
