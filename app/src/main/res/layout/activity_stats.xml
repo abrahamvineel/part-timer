@@ -7,41 +7,42 @@
     android:layout_height="match_parent"
     tools:context="com.android.part_timer.controller.MainActivity">
 
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:indeterminate="false"
-        android:progressDrawable="@drawable/circle_rotation"
-        android:background="@drawable/circle"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:max="100"
-        android:progress="70"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="70dp"/>
-
-    <TextView
-        android:id="@+id/progress_text"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="90dp"
-        android:text="@string/progress_text" />
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:id="@+id/hrs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="110dp"
-        android:text="16" />
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/circle"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="70"
+            android:progressDrawable="@drawable/circle_rotation" />
+
+        <TextView
+            android:id="@+id/progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/progress_text" />
+
+
+        <TextView
+            android:id="@+id/hrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:text="16" />
+    </RelativeLayout>
 
     <Spinner
         android:id="@+id/drop_down"

@@ -35,12 +35,16 @@ public class LogData {
     private Date checkIn;
     private Date checkOut;
 
+    private long monthly_total;
+    private long weekly_diff;
+    private int month;
+    private int dayNum;
+
     private Boolean tracking;
 
     public void setId(@NonNull int id) {
         this.id = id;
     }
-
 
     @NonNull
     public String getPlaceID() {
@@ -51,9 +55,46 @@ public class LogData {
         this.placeID = placeID;
     }
 
+    public void setDayNum(int dayNum) {
+        this.dayNum = dayNum;
+    }
+
+    public void setWeekly_diff(long weekly_diff) {
+
+        this.weekly_diff = weekly_diff;
+    }
+
+    public int getDayNum() {
+
+        return dayNum;
+    }
+
+    public long getWeekly_diff() {
+
+        return weekly_diff;
+    }
+
     public Date getCheckIn() {
         return checkIn;
     }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public long getMonthly_total() {
+
+        return monthly_total;
+    }
+
+    public void setMonthly_total(long monthly_total) {
+        this.monthly_total = monthly_total;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
 
     public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
