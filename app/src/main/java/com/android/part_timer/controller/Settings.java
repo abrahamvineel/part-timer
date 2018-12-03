@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.part_timer.Constants;
 import com.android.part_timer.geofence.Geofencing;
@@ -43,7 +45,7 @@ import static android.app.Activity.RESULT_OK;
 public class Settings extends Fragment {
 
     View view;
-    private Button workLocation;
+    private Button workLocation, payPerHourButton;
     private final static String TAG = "SettingsLayout";
     private final int MY_PERMISSION_ACCESS_FINE_LOCATION = 20;
     private static final int PLACE_PICKER_REQUEST = 1;
@@ -51,43 +53,49 @@ public class Settings extends Fragment {
     private Geofencing geofencing;
     private GeofencingClient mGeofencingClient;
     private TextView locationAddress;
-    private ImageView editLocation,contactMail;
-    private  String address="";
+    private EditText payHour;
+    private ImageView editLocation, contactMail;
+    private String address = "";
+    private int payPerHour = 0;
     private Switch twentyHour;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.settings_layout, container, false);
+        view = inflater.inflate(R.layout.settings_layout, container, false);
 
-         workLocation =view.findViewById(R.id.workLocation);
-        locationAddress=view.findViewById(R.id.locationAddress);
-        contactMail=view.findViewById(R.id.contactMail);
-         editLocation=view.findViewById(R.id.editLocation);
-         twentyHour=view.findViewById(R.id.hourFormat);
+        workLocation = view.findViewById(R.id.workLocation);
+        locationAddress = view.findViewById(R.id.locationAddress);
+        contactMail = view.findViewById(R.id.contactMail);
+        editLocation = view.findViewById(R.id.editLocation);
+        twentyHour = view.findViewById(R.id.hourFormat);
+        payPerHourButton = view.findViewById(R.id.payHourButton);
+        payHour = view.findViewById(R.id.payHour);
         appDatabase = AppDatabase.getDatabaseInstance(getActivity());
         mGeofencingClient = LocationServices.getGeofencingClient(getActivity());
-        geofencing = new Geofencing( getContext(), mGeofencingClient);
+        geofencing = new Geofencing(getContext(), mGeofencingClient);
         checkPremission();
         AsyncTask.execute(new Runnable() {
             List<LocationData> locationDataList;
             GeneralData generalData;
+
             @Override
             public void run() {
-                 generalData=appDatabase.generalDataDaoModel().getHourFormat();
-                if(null==generalData){
-                    appDatabase.generalDataDaoModel().insert(new GeneralData(false));
-                }else{
+                generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
+                if (null == generalData) {
+                    appDatabase.generalDataDaoModel().insert(new GeneralData(false, 0));
+                } else {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             twentyHour.setChecked(generalData.getTwentyFourHour());
+                            payHour.setText(String.valueOf(generalData.getPayPerHour()));
                         }
                     });
                 }
-                locationDataList=appDatabase.locationDataDaoModel().loadLocations();
-                for(LocationData locationData: locationDataList){
-                     address=locationData.getAddress();
+                locationDataList = appDatabase.locationDataDaoModel().loadLocations();
+                for (LocationData locationData : locationDataList) {
+                    address = locationData.getAddress();
                 }
                 locationAddress.post(new Runnable() {
                     @Override
@@ -97,24 +105,49 @@ public class Settings extends Fragment {
                 });
             }
         });
+        payPerHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (payHour.getText().toString() != "") {
+                    payPerHour = Integer.parseInt(payHour.getText().toString());
+                }
+                AsyncTask.execute(new Runnable() {
+                    GeneralData generalData;
+
+                    @Override
+                    public void run() {
+                        generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
+                        generalData.setPayPerHour(payPerHour);
+                        appDatabase.generalDataDaoModel().update(generalData);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getContext(), Constants.UPDATE_SUCCESS, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
+        });
         workLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(TAG,"In setting via fragmet");
+                Log.v(TAG, "In setting via fragmet");
                 addLocation();
             }
         });
         twentyHour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                final boolean checked=isChecked;
+                final boolean checked = isChecked;
                 AsyncTask.execute(new Runnable() {
                     GeneralData generalData;
+
                     @Override
                     public void run() {
-                        generalData=appDatabase.generalDataDaoModel().getHourFormat();
+                        generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
                         generalData.setTwentyFourHour(checked);
-                            appDatabase.generalDataDaoModel().update(generalData);
+                        appDatabase.generalDataDaoModel().update(generalData);
                     }
                 });
             }
@@ -160,6 +193,7 @@ public class Settings extends Fragment {
             }
         }
     }
+
     private Boolean checkPremission() {
         Log.v(TAG, "check and requesting permission");
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -182,27 +216,28 @@ public class Settings extends Fragment {
             String placeAddress = place.getAddress().toString();
             String placeID = place.getId();
             LatLng latLng = place.getLatLng();
-            final LocationData locationData = new LocationData(placeName,placeAddress, latLng.latitude, latLng.longitude);
+            final LocationData locationData = new LocationData(placeName, placeAddress, latLng.latitude, latLng.longitude);
 
 
             //insert location data into db
             AsyncTask.execute(new Runnable() {
                 List<LocationData> locationDataList;
+
                 @Override
                 public void run() {
-                    locationDataList=appDatabase.locationDataDaoModel().loadLocations();
-                    for(LocationData locationData: locationDataList){
-                        Log.v(TAG,locationData.getPlaceID());
+                    locationDataList = appDatabase.locationDataDaoModel().loadLocations();
+                    for (LocationData locationData : locationDataList) {
+                        Log.v(TAG, locationData.getPlaceID());
                         appDatabase.locationDataDaoModel().deleteLocation(locationData);
                     }
                     appDatabase.locationDataDaoModel().insert(locationData);
-                    Log.v(TAG,"In thread after insert");
+                    Log.v(TAG, "In thread after insert");
                     // Get Data   AppDatabase.getInstance(context).userDao().getAllUsers();
                 }
             });
-            Log.v(TAG,"lines after thread after insert");
+            Log.v(TAG, "lines after thread after insert");
             LinkedHashMap<String, LatLng> location =
-                    new LinkedHashMap< >();
+                    new LinkedHashMap<>();
             location.put(placeName, latLng);
             geofencing.removeGeofence();
             geofencing.createGeofence(location);
