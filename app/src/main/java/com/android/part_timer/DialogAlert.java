@@ -12,8 +12,6 @@ public class DialogAlert {
         this.context = mContext;
     }
 
-    private Boolean pressed = false;
-
     public AlertDialog.Builder buildOkDialog(String title, String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
