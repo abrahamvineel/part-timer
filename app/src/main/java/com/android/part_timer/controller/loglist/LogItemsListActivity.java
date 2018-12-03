@@ -36,7 +36,7 @@ public class LogItemsListActivity extends AppCompatActivity {
             GeneralData generalData;
             @Override
             public void run() {
-                generalData=appDatabase.generalDataDaoModel().getHourFormat();
+                generalData=appDatabase.generalDataDaoModel().getGeneralSettings();
                 if(null!=generalData && generalData.getTwentyFourHour()){
                     twentyFourHour=true;
                 }
