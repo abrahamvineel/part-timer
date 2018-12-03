@@ -78,6 +78,6 @@ Project update 2 drafting/topics/maintenance (**Al**)
 
 Wrangle git into order (**Al**) 
 
-Clickstreams (**Vineel**) 
+Stats (**Vineel**) 
 
 Remove Login page and Calendar page for now
