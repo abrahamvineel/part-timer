@@ -21,23 +21,19 @@ import com.android.part_timer.database.entity.LogData;
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
-
+    private final static String TAG = "AppDatabase";
     public abstract LocationDataDao locationDataDaoModel();
     public abstract LogDataDao logDataDaoModel();
     public abstract GeneralDataDao generalDataDaoModel();
 
     public static AppDatabase getDatabaseInstance(Context context) {
         if (INSTANCE == null) {
-            Log.v("APPDATABSE","Creating new instance");
+            Log.v(TAG,"Creating new instance");
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,"LocationTrackingDatabase")
                         .build();
         }
         return INSTANCE;
-    }
-
-    public static void destroyInstance() {
-        INSTANCE = null;
     }
 
 }

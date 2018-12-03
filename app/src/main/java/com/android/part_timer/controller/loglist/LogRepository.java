@@ -12,6 +12,7 @@ import com.android.part_timer.database.entity.LogData;
 
 public class LogRepository {
     private LogDataDao logDataDao;
+    //live data gives us the advantage of showing current data to the user
     private LiveData<List<LogData>> allLogs;
 
     public LogRepository(Application application) {
@@ -20,6 +21,7 @@ public class LogRepository {
         allLogs = logDataDao.getAllLogs();
     }
 
+    //public methods to access the data manipulation methods from view model
     public void insert(LogData logData) {
         new InsertLogAsyncTask(logDataDao).execute(logData);
     }
@@ -40,6 +42,7 @@ public class LogRepository {
         return allLogs;
     }
 
+    // all the manipulations will be run in background to avoid UI lag
     private static class InsertLogAsyncTask extends AsyncTask<LogData, Void, Void> {
         private LogDataDao logDataDao;
 

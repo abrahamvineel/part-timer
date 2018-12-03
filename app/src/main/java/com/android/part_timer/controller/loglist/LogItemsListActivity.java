@@ -29,9 +29,12 @@ public class LogItemsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_items_list);
         appDatabase = AppDatabase.getDatabaseInstance(this);
+
+        //recycler view sets the log items in card view
         recyclerView = findViewById(R.id.log_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+        //get the twenty four hour format use has selected and pass it to the activity to set the log lists
         AsyncTask.execute(new Runnable() {
             GeneralData generalData;
             @Override
@@ -43,6 +46,7 @@ public class LogItemsListActivity extends AppCompatActivity {
                 final LogListAdapter adapter = new LogListAdapter(LogItemsListActivity.this,LogItemsListActivity.this,twentyFourHour);
                 recyclerView.setAdapter(adapter);
                 logViewModel = ViewModelProviders.of(LogItemsListActivity.this).get(LogViewModel.class);
+                //this view model observes for the data change in database
                 logViewModel.getAllLogs().observe(LogItemsListActivity.this, new Observer<List<LogData>>() {
                     @Override
                     public void onChanged(@Nullable List<LogData> logs) {
