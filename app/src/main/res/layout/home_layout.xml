@@ -18,23 +18,24 @@
             android:layout_marginTop="70dp"
             android:orientation="vertical">
 
+            <!--shows greeting message-->
             <TextView
                 android:id="@+id/greeting"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="Good Afternoon"
                 android:textColor="@color/colorBlack"
                 android:textSize="30sp" />
 
+            <!--chek-in and check-out layouts-->
             <LinearLayout
                 android:id="@+id/logTime"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/greeting"
+                android:layout_height="0dp"
                 android:layout_marginTop="40dp"
                 android:layout_weight="1">
 
+                <!--check-in layout-->
                 <LinearLayout
                     android:id="@+id/checkInLayout"
                     android:layout_width="wrap_content"
@@ -42,6 +43,7 @@
                     android:layout_weight="0.5"
                     android:orientation="horizontal">
 
+                    <!--check-in time-->
                     <LinearLayout
                         android:id="@+id/checkInTimeLayout"
                         android:layout_width="0dp"
@@ -65,13 +67,13 @@
                             android:id="@+id/checkInText"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_alignParentBottom="true"
                             android:layout_gravity="center|bottom"
-                            android:text="Check In"
+                            android:text="@string/checkIn"
                             android:textColor="@color/colorBlack"
                             android:textSize="20sp" />
                     </LinearLayout>
 
+                    <!--check-in action layout-->
                     <LinearLayout
                         android:id="@+id/checkInAction"
                         android:layout_width="0dp"
@@ -96,6 +98,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <!--check-out layout-->
                 <LinearLayout
                     android:id="@+id/checkOutLayout"
                     android:layout_width="wrap_content"
@@ -103,6 +106,7 @@
                     android:layout_weight=".5"
                     android:orientation="horizontal">
 
+                    <!--check-out time-->
                     <LinearLayout
                         android:id="@+id/checkOutTimeLayout"
                         android:layout_width="0dp"
@@ -127,11 +131,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Check Out"
+                            android:text="@string/checkOut"
                             android:textColor="@color/colorBlack"
                             android:textSize="20sp" />
                     </LinearLayout>
 
+                    <!--check-out action layout-->
                     <LinearLayout
                         android:id="@+id/checkOutAction"
                         android:layout_width="0dp"
@@ -152,6 +157,7 @@
 
             </LinearLayout>
 
+            <!--total number of hours for the current week-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,6 +185,7 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
+            <!--layout to show estimated pay-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Estimated pay: "
+                    android:text="@string/estimatedPay"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 
@@ -205,52 +212,52 @@
                     android:id="@+id/payInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_info_inline"
                     />
             </LinearLayout>
 
         </LinearLayout>
 
-
+        <!--floating menu-->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingMenu_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginBottom="70dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_add"
             app:pressedTranslationZ="12dp">
 
         </android.support.design.widget.FloatingActionButton>
 
+        <!--floating button layout to edit the log times-->
         <LinearLayout
             android:id="@+id/floating_edit_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/floatingMenu_add"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginEnd="10dp">
 
             <TextView
                 android:id="@+id/floating_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_background"
-                android:text="Edit the Log times"
+                android:text="@string/editLog"
                 android:visibility="invisible" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floating_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_edit"
                 android:tint="@color/colorWhite"
                 android:visibility="invisible"
@@ -258,30 +265,31 @@
                 app:fabSize="mini" />
         </LinearLayout>
 
+        <!--floating add button layout to add log times-->
         <LinearLayout
             android:id="@+id/floating_add_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/floating_edit_layout"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginEnd="10dp">
 
             <TextView
                 android:id="@+id/floating_add_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_background"
-                android:text="Add the Log times"
+                android:text="@string/addLog"
                 android:visibility="invisible" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/floating_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_add"
                 android:visibility="invisible"
                 app:backgroundTint="@color/colorPrimary"
