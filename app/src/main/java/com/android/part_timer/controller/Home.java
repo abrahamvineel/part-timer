@@ -52,10 +52,10 @@ public class Home extends Fragment {
     private Animation fabOpen, fabClose, fabClock, fabAntiClock;
     public static AppDatabase appDatabase;
     private ImageView checkInEdit, checkInDelete, checkOutEdit;
-    private TextView floating_edit_text, floating_add_text, greeting;
+    private TextView floating_edit_text, floating_add_text, greeting,estimatedPay;
     private LinearLayout checkInActionLayout, checkOutActionLayout;
     private SwipeRefreshLayout pullToRefresh;
-    private int year, month, day, hour, minute;
+    private int year, month, day, hour, minute,payPerHour=0;
     private Date checkInDate = null, checkOutDate = null;
     private String checkInText, checkOutText;
     private Boolean checkInAction = false, isPressed = false, twentyFourHour = false;
@@ -73,6 +73,7 @@ public class Home extends Fragment {
         checkInActionLayout = view.findViewById(R.id.checkInAction);
         checkOutActionLayout = view.findViewById(R.id.checkOutAction);
         totalTimeStay = view.findViewById(R.id.hours);
+        estimatedPay=view.findViewById(R.id.estimatedPay);
         floatingMenu_add = view.findViewById(R.id.floatingMenu_add);
         floatingAdd = view.findViewById(R.id.floating_add);
         floating_add_text = view.findViewById(R.id.floating_add_text);
@@ -98,11 +99,13 @@ public class Home extends Fragment {
 
             @Override
             public void run() {
-                generalData = appDatabase.generalDataDaoModel().getHourFormat();
+                generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
                 if (null != generalData && generalData.getTwentyFourHour()) {
                     twentyFourHour = true;
                 }
-
+                if (null != generalData && generalData.getPayPerHour() > 0){
+                    payPerHour=generalData.getPayPerHour();
+                }
             }
         });
         setLog();
@@ -185,8 +188,8 @@ public class Home extends Fragment {
         if (!isNetworkAvailable()) {
             new DialogAlert(getContext()).buildOkDialog(Constants.NO_INTERNET_TITLE,
                     Constants.NO_INTERNET_MESSAGE).show();
-        }else{
-            if(!checkGpsStatus(getContext())){
+        } else {
+            if (!checkGpsStatus(getContext())) {
                 new DialogAlert(getContext()).buildOkDialog(Constants.NO_GPS_TITLE,
                         Constants.NO_GPS_MESSAGE).show();
             }
@@ -379,7 +382,11 @@ public class Home extends Fragment {
                     totalTimeStay.post(new Runnable() {
                         @Override
                         public void run() {
-                            totalTimeStay.setText(dateDifference(weekLogList));
+                            String time=dateDifference(weekLogList);
+                            totalTimeStay.setText(time);
+                            int hours=Integer.parseInt(time.split(":")[0]);int min=Integer.parseInt(time.split(":")[1]);
+                            double pay=(hours*payPerHour)+((double)min/60)*payPerHour;
+                            estimatedPay.setText(Constants.DOLLAR+String.format("%.2f",pay));
                         }
                     });
                 } else {
@@ -396,6 +403,7 @@ public class Home extends Fragment {
                             checkOutActionLayout.setVisibility(View.INVISIBLE);
                             checkOutDate = null;
                             totalTimeStay.setText("");
+                            estimatedPay.setText("");
                         }
                     });
                 }
