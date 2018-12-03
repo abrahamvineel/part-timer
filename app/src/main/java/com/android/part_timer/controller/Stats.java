@@ -38,7 +38,6 @@ public class Stats extends Fragment {
             may_val=0,jun_val=0,jul_val=0,aug_val=0,
             sep_val=0,oct_val=0,nov_val=0,dec_val=0;
     int month_num, day_num;
-    LogData mon, tue, wed, thu, fri, sat, sun;
 
     @Nullable
     @Override
@@ -81,16 +80,20 @@ public class Stats extends Fragment {
                     }
                 }
                 val= mon_val+tue_val+wed_val+thu_val+fri_val+sat_val+sun_val;
-                progress_val = ((double)val /20)*100;
-                ProgressBar progress = (ProgressBar) v.findViewById(R.id.progress);
+                progress_val = (val /20)*100;
+                ProgressBar progress = v.findViewById(R.id.progress);
                 progress.setProgress((int) progress_val);
-                TextView progress_text = (TextView) v.findViewById(R.id.hrs);
-                progress_text.setText((int)val + "");
+                TextView progress_text = v.findViewById(R.id.hrs);
+                if ((int) val == val) {
+                    progress_text.setText((int) val + "");
+                } else {
+                    progress_text.setText(String.format("%.2f",val));
+                }
             }
         });
 
         final BarChart barChart = v.findViewById(R.id.chart);
-        drop_down = (Spinner) v.findViewById(R.id.drop_down);
+        drop_down = v.findViewById(R.id.drop_down);
         adapter = ArrayAdapter.createFromResource(getContext(), R.array.drop_down, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         drop_down.setAdapter(adapter);
@@ -165,7 +168,6 @@ public class Stats extends Fragment {
                                         }
                                     });
                                 } // refresh
-
 
                                 barChart.setData(weekly_data);
                                 barChart.getXAxis().setDrawGridLines(false);
@@ -259,12 +261,9 @@ public class Stats extends Fragment {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // LogData mon, tue, wed, thu, fri, sat, sun;
-                        //int mon_val =0, tue_val=0, wed_val=0,thu_val=0,fri_val=0,sat_val=0,sun_val=0;
                         final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
                         for (int j = 0; j < logData.size(); j++) {
                             day_num = logData.get(j).getDayNum();
-                            Log.v(TAG,"day num in nothing selected"+day_num);
                             switch (day_num) {
                                 case 0:
                                     sun_val = milliToHours(logData.get(j).getWeekly_diff());
@@ -276,19 +275,15 @@ public class Stats extends Fragment {
                                     tue_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 3:
-                                    //wed = logData.get(j);
                                     wed_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 4:
-                                    //thu = logData.get(j);
                                     thu_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 5:
-                                    //fri = logData.get(j);
                                     fri_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 6:
-                                    //sat = logData.get(j);
                                     sat_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                             }
@@ -315,7 +310,7 @@ public class Stats extends Fragment {
                         labels.add("Sun");
 
                         BarData data = new BarData(labels, bardataset);
-                        data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
+                        data.notifyDataChanged();
                         barChart.setData(data);
                         barChart.notifyDataSetChanged(); // let the chart know it's data changed
                         if (data!=null){
@@ -325,7 +320,7 @@ public class Stats extends Fragment {
                                     barChart.invalidate();
                                 }
                             });
-                        } // refresh
+                        }
                         barChart.getXAxis().setDrawGridLines(false);
                         barChart.getAxisLeft().setDrawGridLines(false);
                         barChart.getAxisRight().setDrawGridLines(false);
@@ -339,30 +334,6 @@ public class Stats extends Fragment {
             }
         });
         return v;
-    }
-
-
-
-    public double dateDifference(Date startDate, Date endDate) {
-
-        //milliseconds
-        long difference = endDate.getTime() - startDate.getTime();
-        Log.v(TAG, "diff" + difference);
-
-        long secondsInMilli = 1000;
-        long minutesInMilli = secondsInMilli * 60;
-        long hoursInMilli = minutesInMilli * 60;
-
-        long hours = (long) ((double)difference / hoursInMilli);
-        Log.v(TAG, "hours " + hours);
-        difference = difference % hoursInMilli;
-
-        double minutes = difference / minutesInMilli;
-        minutes = minutes/60;
-
-        double total = (int) hours + minutes;
-        return total;
-
     }
 
     //function to convert milliseconds to hours
