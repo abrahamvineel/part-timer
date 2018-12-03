@@ -145,7 +145,7 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Users informed/notified about tracked work-hours (Completed)
 - Show number of hours worked this day/week/month (Completed)
 - Add, edit, and delete data (Completed)
-- Show estimated pay for this day/week/month (Partially Completed)
+- Show estimated pay for this week (Completed)
 
 #### Bonus Functionality
 - Edit check-in time and check-out time (Implemented)
