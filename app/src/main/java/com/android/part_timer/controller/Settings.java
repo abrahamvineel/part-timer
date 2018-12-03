@@ -89,7 +89,12 @@ public class Settings extends Fragment {
                         @Override
                         public void run() {
                             twentyHour.setChecked(generalData.getTwentyFourHour());
-                            payHour.setText(String.valueOf(generalData.getPayPerHour()));
+                            payPerHour=generalData.getPayPerHour();
+                            String pay=String.valueOf(payPerHour);
+                            if((int)payPerHour==payPerHour){
+                                pay=String.valueOf((int)payPerHour);
+                            }
+                            payHour.setText(pay);
                         }
                     });
                 }
