@@ -55,7 +55,8 @@ public class Home extends Fragment {
     private TextView floating_edit_text, floating_add_text, greeting,estimatedPay;
     private LinearLayout checkInActionLayout, checkOutActionLayout;
     private SwipeRefreshLayout pullToRefresh;
-    private int year, month, day, hour, minute,payPerHour=0;
+    private int year, month, day, hour, minute;
+    private double payPerHour=0;
     private Date checkInDate = null, checkOutDate = null;
     private String checkInText, checkOutText;
     private Boolean checkInAction = false, isPressed = false, twentyFourHour = false;
