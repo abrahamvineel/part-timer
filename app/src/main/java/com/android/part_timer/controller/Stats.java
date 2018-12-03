@@ -365,6 +365,7 @@ public class Stats extends Fragment {
 
     }
 
+    //function to convert milliseconds to hours
     public double milliToHours(long milli) {
 
         double sec, min, hrs;
