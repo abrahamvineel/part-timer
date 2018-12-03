@@ -81,7 +81,7 @@ public class AddLogTimeDialog {
         addLog_checkOutYearMonth = addLogLayout.findViewById(R.id.addLog_checkOutYearMonth);
         addLog_checkOutAction = addLogLayout.findViewById(R.id.addLog_checkOutAction);
         addLog_checkInDelete = addLogLayout.findViewById(R.id.addLog_checkInDelete);
-        locationSpinner = (Spinner) addLogLayout.findViewById(R.id.locationSpinner);
+        locationSpinner =  addLogLayout.findViewById(R.id.locationSpinner);
         locations = new ArrayList<>();
         AsyncTask.execute(new Runnable() {
             @Override
@@ -90,7 +90,8 @@ public class AddLogTimeDialog {
                 for (LocationData locationData : locationDataList) {
                     locations.add(locationData.getPlaceID());
                 }
-                selectedLocation = locations.get(0);
+                if (locations != null){
+                    selectedLocation = locations.get(0);
                 adapter = new ArrayAdapter<String>(context,
                         android.R.layout.simple_spinner_item, locations);
 
@@ -104,9 +105,10 @@ public class AddLogTimeDialog {
                             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                                 selectedLocation = locations.get(position);
                             }
+
                             @Override
                             public void onNothingSelected(AdapterView<?> parentView) {
-                                Log.v(TAG,"nothing selected");
+                                Log.v(TAG, "nothing selected");
                             }
 
                         });
@@ -118,6 +120,7 @@ public class AddLogTimeDialog {
                     twentyFourHour = true;
                 }
             }
+        }
         });
 
 
