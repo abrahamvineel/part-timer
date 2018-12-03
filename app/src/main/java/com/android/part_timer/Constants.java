@@ -21,6 +21,10 @@ public final class Constants {
     public static final String YES_NO_DIALOG_YES_BUTTON = "Yes";
     public static final String YES_NO_DIALOG_NO_BUTTON = "No";
 
+    //pay info
+    public static final String PAY_INFO_TITLE = "Payment Info";
+    public static final String PAY_INFO_MESSAGE = "Taxes are not included";
+
     public static final String WORK_LOCATION_NAME = "Work";
 
     //Toast
