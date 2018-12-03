@@ -7,15 +7,25 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "general_data")
 public class GeneralData {
-    public GeneralData(boolean twentyFourHour) {
+    public GeneralData(boolean twentyFourHour,int payPerHour) {
         super();
         this.twentyFourHour = twentyFourHour;
+        this.payPerHour=payPerHour;
     }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
     private boolean twentyFourHour;
     private String contactEmail;
+    private int payPerHour;
+
+    public int getPayPerHour() {
+        return payPerHour;
+    }
+
+    public void setPayPerHour(int payPerHour) {
+        this.payPerHour = payPerHour;
+    }
 
     public boolean getTwentyFourHour() {
         return twentyFourHour;
