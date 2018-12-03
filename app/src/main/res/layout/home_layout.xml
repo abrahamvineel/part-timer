@@ -31,6 +31,7 @@
                 android:id="@+id/logTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:layout_below="@id/greeting"
                 android:layout_weight="1">
 
@@ -45,7 +46,6 @@
                         android:id="@+id/checkInTimeLayout"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="60dp"
                         android:layout_weight="0.4"
                         android:orientation="vertical">
 
@@ -76,7 +76,6 @@
                         android:id="@+id/checkInAction"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="60dp"
                         android:layout_weight="0.1"
                         android:orientation="vertical">
 
@@ -101,7 +100,6 @@
                     android:id="@+id/checkOutLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
                     android:layout_weight=".5"
                     android:orientation="horizontal">
 
@@ -180,7 +178,33 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/estimatedPaytext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:text="Estimated pay: " />
+                <TextView
+                    android:id="@+id/estimatedPay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
         </LinearLayout>
+
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingMenu_add"
