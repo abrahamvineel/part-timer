@@ -56,7 +56,7 @@ public class Settings extends Fragment {
     private EditText payHour;
     private ImageView editLocation, contactMail;
     private String address = "";
-    private int payPerHour = 0;
+    private double payPerHour = 0;
     private Switch twentyHour;
 
     @Nullable
@@ -109,7 +109,7 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View view) {
                 if (payHour.getText().toString() != "") {
-                    payPerHour = Integer.parseInt(payHour.getText().toString());
+                    payPerHour = Double.parseDouble(payHour.getText().toString());
                 }
                 AsyncTask.execute(new Runnable() {
                     GeneralData generalData;
