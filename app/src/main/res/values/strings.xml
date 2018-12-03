@@ -31,5 +31,26 @@
     <string name="info">info</string>
     <string name="info_text">Welcome to Part-timer</string>
 
+    <!--add_logtime.xml-->
+    <string name="checkIn">Check In</string>
+    <string name="checkOut">Check Out</string>
+
+    <!--home_layout-->
+    <string name="estimatedPay">Estimated pay: </string>
+    <string name="editLog">Edit the Log times</string>
+    <string name="addLog">Add the Log times</string>
+
+    <!--settings_layout-->
+    <string name="settings">Settings</string>
+    <string name="editWorkLocation">Edit Work location</string>
+    <string name="addWork">Add Work</string>
+    <string name="twentyFourFormat">24h format:</string>
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
+    <string name="payPerHour">Pay per hour :</string>
+    <string name="ok">Ok</string>
+    <string name="contact">Contact</string>
+    <string name="contactInfo">We love to get suggestions, email part.timer@helpdesk.com</string>
+
 
 </resources>
