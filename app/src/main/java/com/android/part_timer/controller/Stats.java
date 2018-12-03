@@ -59,30 +59,23 @@ public class Stats extends Fragment {
                     switch (day_num) {
                         case 0:
                             sun_val = milliToHours(logData.get(j).getWeekly_diff());
-                            //sun_val = dateDifference(sun.getCheckIn(), sun.getCheckOut());
                             continue;
                         case 1:
-                            //mon = logData.get(j);
                             mon_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 2:
-                            //tue = logData.get(j);
                             tue_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 3:
-                            //wed = logData.get(j);
                             wed_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 4:
-                            //thu = logData.get(j);
                             thu_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 5:
-                            //fri = logData.get(j);
                             fri_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 6:
-                            //sat = logData.get(j);
                             sat_val = milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                     }
@@ -114,30 +107,23 @@ public class Stats extends Fragment {
                             switch (day_num) {
                                 case 0:
                                     sun_val = milliToHours(logData.get(j).getWeekly_diff());
-                                    //sun_val = dateDifference(sun.getCheckIn(), sun.getCheckOut());
                                     continue;
                                 case 1:
-                                    //mon = logData.get(j);
                                     mon_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 2:
-                                    //tue = logData.get(j);
                                     tue_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 3:
-                                    //wed = logData.get(j);
                                     wed_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 4:
-                                    //thu = logData.get(j);
                                     thu_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 5:
-                                    //fri = logData.get(j);
                                     fri_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 6:
-                                    //sat = logData.get(j);
                                     sat_val = milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                             }
@@ -171,7 +157,9 @@ public class Stats extends Fragment {
                                 BarData weekly_data = new BarData(labels, bardataset);
                                 weekly_data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
                                 barChart.notifyDataSetChanged(); // let the chart know it's data changed
-                                barChart.invalidate(); // refresh
+                                if (weekly_data!=null){
+                                barChart.invalidate();
+                                }// refresh
 
 
                                 barChart.setData(weekly_data);
@@ -295,13 +283,13 @@ public class Stats extends Fragment {
                         }
 
                         ArrayList<BarEntry> entries = new ArrayList<>();
-                        entries.add(new BarEntry((int) mon_val, 0));
-                        entries.add(new BarEntry((int) tue_val, 1));
-                        entries.add(new BarEntry((int) wed_val, 2));
-                        entries.add(new BarEntry((int) thu_val, 3));
-                        entries.add(new BarEntry((int) fri_val, 4));
-                        entries.add(new BarEntry((int) sat_val, 5));
-                        entries.add(new BarEntry((int) sun_val, 6));
+                        entries.add(new BarEntry((float) mon_val, 0));
+                        entries.add(new BarEntry((float) tue_val, 1));
+                        entries.add(new BarEntry((float) wed_val, 2));
+                        entries.add(new BarEntry((float) thu_val, 3));
+                        entries.add(new BarEntry((float) fri_val, 4));
+                        entries.add(new BarEntry((float) sat_val, 5));
+                        entries.add(new BarEntry((float) sun_val, 6));
 
                         BarDataSet bardataset = new BarDataSet(entries, "Cells");
                         ArrayList<String> labels = new ArrayList<>();
@@ -317,7 +305,6 @@ public class Stats extends Fragment {
                         BarData data = new BarData(labels, bardataset);
                         data.notifyDataChanged(); // NOTIFIES THE DATA OBJECT
                         barChart.setData(data);
-
                         barChart.notifyDataSetChanged(); // let the chart know it's data changed
                         barChart.invalidate(); // refresh
                         barChart.getXAxis().setDrawGridLines(false);
@@ -329,6 +316,7 @@ public class Stats extends Fragment {
 
                     }
                 });
+
             }
         });
         return v;
@@ -358,15 +346,15 @@ public class Stats extends Fragment {
 
     }
 
-    public int milliToHours(long milli) {
+    public double milliToHours(long milli) {
 
-        long sec, min, hrs;
+        double sec, min, hrs;
         sec = milli / 1000;
         min = sec / 60;
         sec = sec % 60;
         hrs = min / 60;
-        Log.v(TAG, "milli to hours " + hrs);
-        return (int)hrs;
+        Log.v(TAG, " hours " + hrs);
+        return hrs;
     }
 
 }
