@@ -127,7 +127,7 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Site map
 
-![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/app_logo.png)
+![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG)
 
 ## Final Project Status
 
