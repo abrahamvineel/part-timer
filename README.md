@@ -133,6 +133,8 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG)
 
+## Wireframe
+
 ## Screenshots
 
 ## Testing methodologies
