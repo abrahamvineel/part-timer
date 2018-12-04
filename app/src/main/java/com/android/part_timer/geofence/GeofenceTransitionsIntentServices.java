@@ -48,6 +48,7 @@ public class GeofenceTransitionsIntentServices extends IntentService {
         Log.v(TAG, "in create");
     }
 
+    //receives intent when user enters/exists the geofence
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
@@ -72,7 +73,7 @@ public class GeofenceTransitionsIntentServices extends IntentService {
             }else{
                 sendNotification(geofenceTransitionDetails,Constants.GEOFENCE_EXIT_NOTIFICATION_MESSAGE,false);
             }
-            appDatabase = AppDatabase.getDatabaseInstance(this);
+            //calls the logTimeUpdate to update the time to DB
             LogTimeUpdate logTimeUpdate = new LogTimeUpdate(geofenceTransition, appDatabase);
             String placeId = "";
             for (Geofence geofence : triggeringGeofences) {
@@ -92,13 +93,12 @@ public class GeofenceTransitionsIntentServices extends IntentService {
         for (Geofence geofence : triggeringGeofences) {
             triggeringGeofenceList.add(geofence.getRequestId());
         }
-        String triggeringgeofenceId = TextUtils.join(",", triggeringGeofenceList);
+        String triggeringGeofenceId = TextUtils.join(",", triggeringGeofenceList);
         if(geofenceTransition == 1){
-            return Constants.GEOFENCE_ENTER_NOTIFICATION_TITLE +triggeringgeofenceId;
+            return Constants.GEOFENCE_ENTER_NOTIFICATION_TITLE +triggeringGeofenceId;
         }else{
-            return Constants.GEOFENCE_EXIT_NOTIFICATION_TITLE +triggeringgeofenceId;
+            return Constants.GEOFENCE_EXIT_NOTIFICATION_TITLE +triggeringGeofenceId;
         }
-       // return geofenceTransitionString + ":" + triggeringgeofenceId;
     }
 
     private void sendNotification(String notificationDetails,String text,Boolean action) {
