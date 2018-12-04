@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static android.support.constraint.Constraints.TAG;
 import static com.android.part_timer.controller.Home.appDatabase;
 
 public class Stats extends Fragment {
@@ -144,6 +141,7 @@ public class Stats extends Fragment {
                         switch (i)
                         {
                             case 0:
+                                //Adding the values to respective indices
                                 ArrayList<BarEntry> entries = new ArrayList<>();
                                 entries.add(new BarEntry((float) mon_val, 0));
                                 entries.add(new BarEntry((float) tue_val, 1));
@@ -158,6 +156,7 @@ public class Stats extends Fragment {
 
                                 ArrayList<String> labels = new ArrayList<>();
 
+                                //Labels to denote day of the week
                                 labels.add("Mon");
                                 labels.add("Tue");
                                 labels.add("Wed");
@@ -179,6 +178,8 @@ public class Stats extends Fragment {
                                 }
 
                                 barChart.setData(weekly_data);
+                                //By default the grid lines are shown in the background
+                                //It was disabled by the following function by setting it to false
                                 barChart.getXAxis().setDrawGridLines(false);
                                 barChart.getAxisLeft().setDrawGridLines(false);
                                 barChart.getAxisRight().setDrawGridLines(false);
@@ -188,7 +189,6 @@ public class Stats extends Fragment {
                                 break;
 
                             case 1:
-
 
                                 for(int i =0;i<monthLogdata.size();i++) {
                                     month_num = monthLogdata.get(i).getMonth();
@@ -226,6 +226,7 @@ public class Stats extends Fragment {
                                 bardataset_monthly.setColor(Color.BLUE);
 
                                 ArrayList<String> labels_monthly = new ArrayList<>();
+                                //Labels to show month
                                 labels_monthly.add("Jan");
                                 labels_monthly.add("Feb");
                                 labels_monthly.add("Mar");
@@ -354,7 +355,6 @@ public class Stats extends Fragment {
         min = sec / 60;
         sec = sec % 60;
         hrs = min / 60;
-        Log.v(TAG, " hours " + hrs);
         return hrs;
     }
 }
