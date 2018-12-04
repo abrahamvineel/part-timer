@@ -125,6 +125,9 @@ An overview of hours worked in the past weeks and months will be displayed in th
 ### Control over data
 As data will be stored locally on user’s devices, they will have complete control over it. Users will be able to edit and delete existing entries as well create entirely new entries manually if they wish. This allows users to rest easy knowing that their location and work-hour information is completely within their hands. 
 
+## Site map
+
+![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/app_logo.png)
 
 ## Final Project Status
 
