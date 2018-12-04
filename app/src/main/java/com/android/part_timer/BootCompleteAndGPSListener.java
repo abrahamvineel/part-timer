@@ -34,6 +34,7 @@ public class BootCompleteAndGPSListener extends BroadcastReceiver {
             appDatabase = AppDatabase.getDatabaseInstance(context);
             mGeofencingClient = LocationServices.getGeofencingClient(context);
             geofencing = new Geofencing(context, mGeofencingClient);
+            //re-register geofence after location is turned back on or phone rebooted
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {

@@ -19,6 +19,7 @@ public class PartTimerApp extends Application {
         createNotificationChannels();
     }
 
+    //for devices greater than android oreo we need to create notification channels to send notifications
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
