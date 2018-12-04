@@ -53,7 +53,7 @@ We have developed an application that allows international students who work par
 Source [here](https://developers.google.com/location-context/geofencing/)
 
 **Room Persistence Library** 
-*The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite. The library helps you create a cache of your app's data on a device that's running your app. This cache, which serves as your app's single source of truth, allows users to view a consistent copy of key information within your app, regardless of whether users have an internet connection.*
+The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite. The library helps you create a cache of your app's data on a device that's running your app. This cache, which serves as your app's single source of truth, allows users to view a consistent copy of key information within your app, regardless of whether users have an internet connection.
 Source [here](https://developer.android.com/topic/libraries/architecture/room)
 
 ## Installation Notes
@@ -132,6 +132,10 @@ As data will be stored locally on user’s devices, they will have complete cont
 ## Site map
 
 ![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG)
+
+## Screenshots
+
+## Testing methodologies
 
 ## Final Project Status
 
