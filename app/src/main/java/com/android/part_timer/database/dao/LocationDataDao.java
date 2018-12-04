@@ -18,6 +18,7 @@ public interface LocationDataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(LocationData locationData);
 
+    //query to get all the locations
     @Query("select * from location_data")
     List<LocationData> loadLocations();
 

@@ -100,6 +100,7 @@ public class Home extends Fragment {
                 pullToRefresh.setRefreshing(false);
             }
         });
+        //get the twenty four hour format and pay per hour from the database
         AsyncTask.execute(new Runnable() {
             GeneralData generalData;
 
@@ -203,6 +204,7 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //check for network connection
         if (!isNetworkAvailable()) {
             new DialogAlert(getContext()).buildOkDialog(Constants.NO_INTERNET_TITLE,
                     Constants.NO_INTERNET_MESSAGE).show();
@@ -238,6 +240,7 @@ public class Home extends Fragment {
         }
     };
 
+    //floating buttons animations
     private void fabAnimation() {
         if (isPressed) {
             floatingMenu_add.startAnimation(fabAntiClock);
@@ -297,16 +300,20 @@ public class Home extends Fragment {
                 @Override
                 public void run() {
                     try {
+                        //check for the check-in and check-out relation errors
                         if ((null != checkOutDate || !checkOutText.equals("")) &&
                                 ((checkInAction && (selectedDate.after(checkOutDate) || selectedDate.equals(checkOutDate))) ||
                                         (!checkInAction && (selectedDate.before(checkInDate) || selectedDate.equals(checkInDate))))) {
+                            //check to see selected date is not greater than check-out time
                             if (checkInAction && selectedDate.after(checkOutDate)) {
                                 message = Constants.CHECKIN_ERROR;
-                            } else if (!checkInAction && selectedDate.before(checkInDate)) {
+                            }//check to see selected date is not lesser than check-in date
+                            else if (!checkInAction && selectedDate.before(checkInDate)) {
                                 message = Constants.CHECKOUT_ERROR;
                             } else {
                                 message = Constants.CHECKIN_CHECKOUT_ERROR;
                             }
+                            //shows the dialog error based on the message got from above checks
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -315,6 +322,7 @@ public class Home extends Fragment {
                             });
                         } else {
                             LogData logData = appDatabase.logDataDaoModel().getLogFromCheckIn(checkInDate.getTime());
+                            //query to check if selected date is not in between any other Log date of DB
                             LogData betweenData = appDatabase.logDataDaoModel().getLogDateBetween(logData.getId(), selectedDate.getTime());
                             if (betweenData == null || logData.getId() == betweenData.getId()) {
                                 if (checkInAction) {
@@ -322,8 +330,6 @@ public class Home extends Fragment {
                                 } else {
                                     logData.setCheckOut(selectedDate);
                                 }
-                                //Log.v(TAG,logData.getId()+","+logData.getCheckIn().toString()+","+
-                                //      logData.getCheckOut()+ ","+betweenData.getId()+","+betweenData.getCheckIn()+","+betweenData.getCheckOut());
                                 Log.v(TAG, "in between" + betweenData);
                                 appDatabase.logDataDaoModel().update(logData);
                                 setLog();
@@ -352,6 +358,8 @@ public class Home extends Fragment {
         }
     };
 
+
+    //updates the check-in , check-out time and total time and estimated pay in the UI from DB
     public void setLog() {
         AsyncTask.execute(new Runnable() {
             @Override
@@ -400,7 +408,7 @@ public class Home extends Fragment {
                     totalTimeStay.post(new Runnable() {
                         @Override
                         public void run() {
-                            String time = dateDifference(weekLogList);
+                            String time = totalTime(weekLogList);
                             totalTimeStay.setText(time);
                             int hours = Integer.parseInt(time.split(":")[0]);
                             int min = Integer.parseInt(time.split(":")[1]);
@@ -430,7 +438,8 @@ public class Home extends Fragment {
         });
     }
 
-    public String dateDifference(List<LogData> weekLogDataList) {
+    //returns the total time by combining all the log times
+    public String totalTime(List<LogData> weekLogDataList) {
 
         long totalTimeMillis = 0L;
         //milliseconds
@@ -463,6 +472,7 @@ public class Home extends Fragment {
         }
         return networkAvailable;
     }
+
 
     public boolean checkGpsStatus(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);

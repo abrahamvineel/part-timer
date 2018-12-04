@@ -16,7 +16,6 @@ public class GeneralData {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private boolean twentyFourHour;
-    private String contactEmail;
     private double payPerHour;
 
     public double getPayPerHour() {
@@ -43,11 +42,4 @@ public class GeneralData {
         this.twentyFourHour = twentyFourHour;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
-    }
-
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
 }

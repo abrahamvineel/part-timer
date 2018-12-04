@@ -81,8 +81,10 @@ public class AddLogTimeDialog {
         addLog_checkOutYearMonth = addLogLayout.findViewById(R.id.addLog_checkOutYearMonth);
         addLog_checkOutAction = addLogLayout.findViewById(R.id.addLog_checkOutAction);
         addLog_checkInDelete = addLogLayout.findViewById(R.id.addLog_checkInDelete);
-        locationSpinner =  addLogLayout.findViewById(R.id.locationSpinner);
+        locationSpinner = addLogLayout.findViewById(R.id.locationSpinner);
         locations = new ArrayList<>();
+
+        //get the locations from db and set it to spinner
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -90,40 +92,40 @@ public class AddLogTimeDialog {
                 for (LocationData locationData : locationDataList) {
                     locations.add(locationData.getPlaceID());
                 }
-                if (locations != null){
+                if (locations != null) {
                     selectedLocation = locations.get(0);
-                adapter = new ArrayAdapter<String>(context,
-                        android.R.layout.simple_spinner_item, locations);
+                    adapter = new ArrayAdapter<String>(context,
+                            android.R.layout.simple_spinner_item, locations);
 
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                locationSpinner.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        locationSpinner.setAdapter(adapter);
-                        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                selectedLocation = locations.get(position);
-                            }
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    locationSpinner.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            locationSpinner.setAdapter(adapter);
+                            locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                                    selectedLocation = locations.get(position);
+                                }
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                Log.v(TAG, "nothing selected");
-                            }
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parentView) {
+                                    Log.v(TAG, "nothing selected");
+                                }
 
-                        });
+                            });
+                        }
+                    });
+                    GeneralData generalData;
+                    generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
+                    if (null != generalData && generalData.getTwentyFourHour()) {
+                        twentyFourHour = true;
                     }
-                });
-                GeneralData generalData;
-                generalData = appDatabase.generalDataDaoModel().getGeneralSettings();
-                if (null != generalData && generalData.getTwentyFourHour()) {
-                    twentyFourHour = true;
                 }
             }
-        }
         });
 
-
+        //listeners for the check-in and check-out edit and delete image views
         addLog_checkInEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +146,7 @@ public class AddLogTimeDialog {
                 addLog_checkOutYearMonth.setText("");
                 checkInDate = null;
                 checkOutDate = null;
+                //check-out edit is disable
                 addLog_checkOutAction.setVisibility(View.INVISIBLE);
                 activity.runOnUiThread(new Runnable() {
                     @Override
@@ -228,24 +231,32 @@ public class AddLogTimeDialog {
                 @Override
                 public void run() {
                     try {
+                        //check for the check-in and check-out relation errors
                         if ((null != checkOutDate) &&
                                 ((checkInAction && (selectedDate.after(checkOutDate) || selectedDate.equals(checkOutDate))) ||
                                         (!checkInAction && (selectedDate.before(checkInDate) || selectedDate.equals(checkInDate))))) {
-
+                             //check to see selected date is not greater than check-out time
                             if (checkInAction && selectedDate.after(checkOutDate)) {
                                 message = Constants.CHECKIN_ERROR;
-                            } else if (!checkInAction && selectedDate.before(checkInDate)) {
+                            }
+                            //check to see selected date is not lesser than check-in date
+                            else if (!checkInAction && selectedDate.before(checkInDate)) {
                                 message = Constants.CHECKOUT_ERROR;
-                            } else {
+                            }
+                            //error check if check-in and check-out are equal
+                            else {
                                 message = Constants.CHECKIN_CHECKOUT_ERROR;
                             }
+                            //shows the dialog error based on the message got from above checks
                             activity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     new DialogAlert(context).buildOkDialog(Constants.CHECKIN_CHEKOUT_ERROR_NOTIFICATION_TITLE, message).show();
                                 }
                             });
-                        } else {
+                        }
+                        //if there are no check errors
+                        else {
                             LogData betweenData = appDatabase.logDataDaoModel().getLogDateBetween(logData.getId(), selectedDate.getTime());
                             if (betweenData == null || logData.getId() == betweenData.getId()) {
                                 if (checkInAction) {

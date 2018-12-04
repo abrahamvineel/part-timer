@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //sets the bottom navigation bar
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
         bottom_nav.setOnNavigationItemSelectedListener(navigation_listener);
         bottom_nav.setSelectedItemId(R.id.home);
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //listener for the bottom navigation bar
     private BottomNavigationView.OnNavigationItemSelectedListener navigation_listener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

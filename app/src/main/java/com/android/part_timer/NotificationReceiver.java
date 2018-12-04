@@ -15,6 +15,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     private AppDatabase appDatabase;
     private Context mContext;
 
+    //receiver to get the action pressed in the notification
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -33,6 +34,7 @@ public class NotificationReceiver extends BroadcastReceiver {
             });
         }
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        //remove the notification
         notificationManager.cancel(Constants.NOTIFICATION_ID);
     }
 }

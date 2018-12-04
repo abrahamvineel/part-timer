@@ -18,6 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--api key to access the google maps sdk from the app-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDiF2269E7DgkBr5lRM5khkTl4aHY9pCn8" />

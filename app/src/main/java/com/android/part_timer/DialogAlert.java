@@ -12,6 +12,7 @@ public class DialogAlert {
         this.context = mContext;
     }
 
+    //builder with ok button
     public AlertDialog.Builder buildOkDialog(String title, String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -28,6 +29,7 @@ public class DialogAlert {
         return builder;
     }
 
+    //dialog builder with yes,no buttons
     public AlertDialog.Builder yesNoDialog(DialogInterface.OnClickListener dialogClickListener,String title) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

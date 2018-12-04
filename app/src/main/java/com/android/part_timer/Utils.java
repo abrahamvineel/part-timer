@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Utils {
 
+    //to format date based on the format specified by the user
     public static String[] formatDate(Date formatDate,boolean twentyFour) {
 
         String[] checkTime = {"", ""};

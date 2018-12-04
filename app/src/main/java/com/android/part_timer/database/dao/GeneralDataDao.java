@@ -13,6 +13,7 @@ public interface GeneralDataDao {
     @Insert
     void insert(GeneralData generalData);
 
+    //query to get all the records in the general settings
     @Query("select * from general_data")
     GeneralData getGeneralSettings();
 
