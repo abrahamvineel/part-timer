@@ -30,11 +30,11 @@ import static com.android.part_timer.controller.Home.appDatabase;
 public class Stats extends Fragment {
 
     //Variables to display the values in barchart are initialized
-    double mon_val = 0,tue_val = 0, wed_val = 0,
-            thu_val = 0,fri_val = 0, sat_val = 0,
-            sun_val = 0,jan_val=0,feb_val=0,mar_val=0,apr_val=0,
-            may_val=0,jun_val=0,jul_val=0,aug_val=0,
-            sep_val=0,oct_val=0,nov_val=0,dec_val=0;
+    double mon_val ,tue_val , wed_val ,
+            thu_val ,fri_val , sat_val ,
+            sun_val ,jan_val,feb_val,mar_val,apr_val,
+            may_val,jun_val,jul_val,aug_val,
+            sep_val,oct_val,nov_val,dec_val;
     int month_num, day_num;
 
     @Nullable
@@ -44,6 +44,12 @@ public class Stats extends Fragment {
         final View v = inflater.inflate(R.layout.activity_stats, container, false);
         //drop_down spinner to select between week and month
         Spinner drop_down;
+        //Variables to display the values in barchart are initialized
+         mon_val = 0;tue_val = 0; wed_val = 0;
+                thu_val = 0;fri_val = 0;sat_val = 0;
+                sun_val = 0;jan_val=0;feb_val=0;mar_val=0;apr_val=0;
+                may_val=0;jun_val=0;jul_val=0;aug_val=0;
+                sep_val=0;oct_val=0;nov_val=0;dec_val=0;
         final ArrayAdapter<CharSequence> adapter;
         AsyncTask.execute(new Runnable() {
             double progress_val;
@@ -58,25 +64,25 @@ public class Stats extends Fragment {
                     day_num = logData.get(j).getDayNum();
                     switch (day_num) {
                         case 0:
-                            sun_val = milliToHours(logData.get(j).getWeekly_diff());
+                            sun_val = sun_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 1:
-                            mon_val = milliToHours(logData.get(j).getWeekly_diff());
+                            mon_val = mon_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 2:
-                            tue_val = milliToHours(logData.get(j).getWeekly_diff());
+                            tue_val = tue_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 3:
-                            wed_val = milliToHours(logData.get(j).getWeekly_diff());
+                            wed_val = wed_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 4:
-                            thu_val = milliToHours(logData.get(j).getWeekly_diff());
+                            thu_val = thu_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 5:
-                            fri_val = milliToHours(logData.get(j).getWeekly_diff());
+                            fri_val = fri_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                         case 6:
-                            sat_val = milliToHours(logData.get(j).getWeekly_diff());
+                            sat_val = sat_val+milliToHours(logData.get(j).getWeekly_diff());
                             continue;
                     }
                 }
@@ -101,11 +107,17 @@ public class Stats extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         drop_down.setAdapter(adapter);
         drop_down.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
+                        mon_val = 0;tue_val = 0; wed_val = 0;
+                        thu_val = 0;fri_val = 0;sat_val = 0;
+                        sun_val = 0;jan_val=0;feb_val=0;mar_val=0;apr_val=0;
+                        may_val=0;jun_val=0;jul_val=0;aug_val=0;
+                        sep_val=0;oct_val=0;nov_val=0;dec_val=0;
                         //Retrieving list of weekly data form the database
                         final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
                         //Retrieving list of monthly data form the database
@@ -114,25 +126,25 @@ public class Stats extends Fragment {
                             day_num = logData.get(j).getDayNum();
                             switch (day_num) {
                                 case 0:
-                                    sun_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    sun_val = sun_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 1:
-                                    mon_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    mon_val = mon_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 2:
-                                    tue_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    tue_val = tue_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 3:
-                                    wed_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    wed_val = wed_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 4:
-                                    thu_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    thu_val = thu_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 5:
-                                    fri_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    fri_val = fri_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 6:
-                                    sat_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    sat_val = sat_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                             }
                         }
@@ -272,30 +284,35 @@ public class Stats extends Fragment {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
+                        mon_val = 0;tue_val = 0; wed_val = 0;
+                        thu_val = 0;fri_val = 0;sat_val = 0;
+                        sun_val = 0;jan_val=0;feb_val=0;mar_val=0;apr_val=0;
+                        may_val=0;jun_val=0;jul_val=0;aug_val=0;
+                        sep_val=0;oct_val=0;nov_val=0;dec_val=0;
                         final List<LogData> logData = appDatabase.logDataDaoModel().getWeek();
                         for (int j = 0; j < logData.size(); j++) {
                             day_num = logData.get(j).getDayNum();
                             switch (day_num) {
                                 case 0:
-                                    sun_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    sun_val = sun_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 1:
-                                    mon_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    mon_val = mon_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 2:
-                                    tue_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    tue_val = tue_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 3:
-                                    wed_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    wed_val = wed_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 4:
-                                    thu_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    thu_val = thu_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 5:
-                                    fri_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    fri_val = fri_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                                 case 6:
-                                    sat_val = milliToHours(logData.get(j).getWeekly_diff());
+                                    sat_val = sat_val+milliToHours(logData.get(j).getWeekly_diff());
                                     continue;
                             }
                         }
