@@ -111,6 +111,7 @@ public class Settings extends Fragment {
                 });
             }
         });
+        //if user presses ok then below method updates it to DB
         payPerHourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +143,7 @@ public class Settings extends Fragment {
                 addLocation();
             }
         });
+        //if user changes the state of switch then below method will update the same to DB
         twentyHour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -208,6 +210,8 @@ public class Settings extends Fragment {
         return true;
     }
 
+
+    //executes when user picks a place from maps
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
@@ -238,7 +242,6 @@ public class Settings extends Fragment {
                     }
                     appDatabase.locationDataDaoModel().insert(locationData);
                     Log.v(TAG, "In thread after insert");
-                    // Get Data   AppDatabase.getInstance(context).userDao().getAllUsers();
                 }
             });
             Log.v(TAG, "lines after thread after insert");
