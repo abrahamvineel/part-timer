@@ -196,4 +196,5 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Research material - [Android Developer Guides](https://developer.android.com/guide/)
 - Android libraries: [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room), Multi-threading [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask)
 - Chart library: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
-
+- Geofences: [Geofences](https://developer.android.com/training/location/geofencing)
+- Room persistence: [Room persistence](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0) 
