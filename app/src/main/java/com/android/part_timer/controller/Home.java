@@ -229,6 +229,12 @@ public class Home extends Fragment {
                             LogData logData = appDatabase.logDataDaoModel().getLogFromCheckIn(checkInDate.getTime());
                             Log.v(TAG, "Id to delete " + logData.getId());
                             appDatabase.logDataDaoModel().deleteLocation(logData);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(),Constants.DELETE_SUCCESS,Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             setLog();
                         }
                     });

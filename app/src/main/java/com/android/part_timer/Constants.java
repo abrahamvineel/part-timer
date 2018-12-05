@@ -30,6 +30,7 @@ public final class Constants {
     //Toast
     public static final String LOGTIME_UPDATE_SUCCESS = "Successfully Updated Log times";
     public static final String UPDATE_SUCCESS = "Successfully Updated";
+    public static final String DELETE_SUCCESS = "Successfully deleted";
 
     public static final String DOLLAR = "$";
     //No Internet

@@ -172,6 +172,12 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.LogHolde
                         public void run() {
                             Log.v(TAG, "Id to delete " + logs.get(position).getId());
                             appDatabase.logDataDaoModel().deleteLocation(logs.get(position));
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                   Toast.makeText(context,Constants.DELETE_SUCCESS,Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                     break;
