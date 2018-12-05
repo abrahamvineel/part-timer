@@ -153,6 +153,12 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Testing methodologies
 
+### Functionality Testing
+Simulated GPS changes successfully triggered work-hour logging.Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page.
+
+### Performance Testing
+Moved from Android location manager class to Google’s Geofence API to increase battery efficiency and GPS accuracy. A performance drop occurred when querying the Room database, so we implemented asynchronous database querying. 
+
 ## Final Project Status
 
 As it stands, Part-Timer is functional though the UI needs further refinement. We achieved the majority of our functionality goals - our application successfully tracks the users location and logs time spent at designated work locations. Statistics about these tracked hours are displayed within the application, and the primary display alerting users to their remaining work hours this week has also been implemented. 
