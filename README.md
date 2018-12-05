@@ -127,31 +127,52 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Low fidelity prototype
 
-![Low fidelity prototype](https://github.com/albrink92/part-timer/blob/master/design_resources/lofiproto.jpg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/lofiproto.jpg" width = 650 height = 800>
 
 ## Site map
 
-![Site map](https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG" width = 900 height = 500>
 
 ## Wireframe
 
 ## Screenshots
 
-![Home page](https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
 
-![Stats Page](https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg" width = 300 height = 500>
 
-![Settings Page](https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
 
-![Help Page](https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg" width = 300 height = 500>
 
-![Data already exists](https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
 
-![Add log times](https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg)
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
 
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/edit_add_logtime.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
 
 
 ## Testing methodologies
+
+### Functionality Testing
+Simulated GPS changes successfully triggered work-hour logging.Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page.
+
+### Performance Testing
+Moved from Android location manager class to Google’s Geofence API to increase battery efficiency and GPS accuracy. A performance drop occurred when querying the Room database, so we implemented asynchronous database querying. 
 
 ## Final Project Status
 
@@ -190,4 +211,5 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Research material - [Android Developer Guides](https://developer.android.com/guide/)
 - Android libraries: [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room), Multi-threading [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask)
 - Chart library: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
-
+- Geofences: [Geofences](https://developer.android.com/training/location/geofencing)
+- Room persistence: [Room persistence](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0) 
