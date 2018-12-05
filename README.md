@@ -137,7 +137,7 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Screenshots
 
-![Home page](https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg)
+![Home page](<img src="https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width="48">)
 
 ![Stats Page](https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg)
 
