@@ -137,6 +137,20 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Screenshots
 
+![Home page](https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg)
+
+![Stats Page](https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg)
+
+![Settings Page](https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg)
+
+![Help Page](https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg)
+
+![Data already exists](https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg)
+
+![Add log times](https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg)
+
+
+
 ## Testing methodologies
 
 ## Final Project Status
