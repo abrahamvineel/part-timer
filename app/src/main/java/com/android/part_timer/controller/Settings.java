@@ -73,7 +73,7 @@ public class Settings extends Fragment {
         payHour = view.findViewById(R.id.payHour);
         appDatabase = AppDatabase.getDatabaseInstance(getActivity());
         mGeofencingClient = LocationServices.getGeofencingClient(getActivity());
-        geofencing = new Geofencing(getContext(), mGeofencingClient);
+        geofencing = new Geofencing(getActivity(),getContext(), mGeofencingClient);
         checkPremission();
         //get the twenty-four hour format and pay per hour from DB
         AsyncTask.execute(new Runnable() {

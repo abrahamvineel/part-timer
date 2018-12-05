@@ -1,5 +1,6 @@
 package com.android.part_timer.geofence;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +24,14 @@ public class Geofencing {
 
     public static final String TAG = Geofencing.class.getSimpleName();
     private Context mContext;
+    private Activity mainActivity;
     protected ArrayList<Geofence> mGeofenceList;
     private PendingIntent mGeofencePendingIntent;
     private GeofencingClient mGeofencingClient;
 
-    public Geofencing( Context context, GeofencingClient client) {
+    public Geofencing(Activity activity, Context context, GeofencingClient client) {
         mContext = context;
+        mainActivity=activity;
         mGeofencingClient = client;
         mGeofenceList = new ArrayList<>();
     }
@@ -80,13 +83,13 @@ public class Geofencing {
     public void addGeofence() {
         try {
             mGeofencingClient.addGeofences(geofencingRequest(), getGeofencePendingIntent())
-                    .addOnSuccessListener( new OnSuccessListener<Void>() {
+                    .addOnSuccessListener(mainActivity, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.v(TAG, "Geo fence successfully added");
                         }
                     })
-                    .addOnFailureListener( new OnFailureListener() {
+                    .addOnFailureListener(mainActivity, new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.v(TAG, "Geo fence failed to add");
@@ -103,7 +106,7 @@ public class Geofencing {
     public void removeGeofence() {
         try {
             mGeofencingClient.removeGeofences(getGeofencePendingIntent())
-                    .addOnSuccessListener( new OnSuccessListener<Void>() {
+                    .addOnSuccessListener(mainActivity, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.v(TAG, "Geo fence removed successfully");
