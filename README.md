@@ -60,7 +60,6 @@ Source [here](https://developer.android.com/topic/libraries/architecture/room)
 This app has to be installed on the phone as it will not work in the emulator. The reason being that the Geofencing API used in the app does not support emulators. On the phone, it is installed like any other Android package.
 
 ## Code Examples
-You will encounter roadblocks and problems while developing your project. Share 2-3 'problems' that your team solved while developing your project. Write a few sentences that describe your solution and provide a code snippet/block that shows your solution. Example:
 
 **Problem 1: Running database queries on main thread caused a little delay in app**
 
@@ -137,39 +136,97 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Screenshots
 
+<div>
+<h3> Home page </h3>
+Home page shows the check-in, check-out times and total number of hours worked in the current week. Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.
+
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
+</div>
 
-<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg" width = 300 height = 500>
+<div>
+<h3>Stats page</h3>
+Stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly are shown in bar chart.
 
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats1.jpeg" width = 300 height = 500>
+</div>
+
+<div>
+    <h3> Settings page </h3>
+    Settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3> Help page</h3>
+    Help page shows description about each page where the user can find about what each function is doing.
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg" width = 300 height = 500>
+</div>
 
-<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
 
-<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
-
+<div>
+    <h3> Edit and add log time</h3>
+    Floating button showing options to the user to add or edit the log times.
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/edit_add_logtime.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3> Add log times</h3>
+    If the phone runs out of charging and log time does not get recorded, we have provided a option to the user to add the work hours 
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
+</div>
+
+<div>
+    <h3>Log work notification</h3>
+    When the user enters work location a notification is shown to the user with options to yes or no. We have provided prompt to the user through wich they can select if they are there to work or on any other business. If the user clicks on 'no' the time does not get logged. 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Left work notification</h3>
+    The user is alerted with a notification that they leave the work location.  
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Log list</h3>
+    List of all work hours are shown where the user can go through them and manually edit or delete if any of them is incorrectly logged
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Checkin greater than checkout</h3>
+    A pop up message is shown when the user enters checkin time greater than checkout time
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Checkout less than checkin</h3>
+    A message is shown when the user enters checkout time lesser than checkin time
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Checkin should not be equal to checkout</h3>
+    A message is shown when the user enters checkin time equal to checkout time
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Payment notification</h3>
+    A pop message is shown saying that taxes are not included in the pay calculation
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
+</div>
 
+<div>
+    <h3>Data already exists</h3>
+    A message is shown to the user when the user tries to enter checkin and checkout times that are already present.
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
+</div>
 
 ## Testing methodologies
 
 ### Functionality Testing
-Simulated GPS changes successfully triggered work-hour logging.Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page.
+Simulated GPS changes successfully triggered work-hour logging. Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page.
 
 ### Performance Testing
 Moved from Android location manager class to Google’s Geofence API to increase battery efficiency and GPS accuracy. A performance drop occurred when querying the Room database, so we implemented asynchronous database querying. 
