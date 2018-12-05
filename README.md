@@ -135,6 +135,33 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Wireframe
 
+## Screenshots
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/edit_add_logtime.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
+
+
 ## Testing methodologies
 
 ### Functionality Testing
