@@ -159,6 +159,10 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
 
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
+
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
 
 
