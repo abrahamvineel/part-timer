@@ -134,92 +134,105 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 ## Wireframe
 
+<div>
+    <h3>Home page wireframe</h3>
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_wireframe1.JPG" width = 300 height = 500>
+</div>
+
+<div>
+    <h3>Stats page wireframe</h3>
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats_wireframe.png" width = 300 height = 500>
+</div>
+
+<div>
+    <h3>Settings page wireframe</h3>
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_wireframe.JPG" width = 300 height = 500>
+</div>
+
 ## Screenshots
 
 <div>
 <h3> Home page </h3>
-Home page shows the check-in, check-out times and total number of hours worked in the current week. Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.
-
+<p>Home page shows the check-in, check-out times and total number of hours worked in the current week. Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
 </div>
 
 <div>
 <h3>Stats page</h3>
-Stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly are shown in bar chart.
-
+<p>Stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly are shown in bar chart.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats1.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3> Settings page </h3>
-    Settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.
+<p>Settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3> Help page</h3>
-    Help page shows description about each page where the user can find about what each function is doing.
+    <p>Help page shows description about each page where the user can find about what each function is doing.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/help_page.jpeg" width = 300 height = 500>
 </div>
 
 
 <div>
     <h3> Edit and add log time</h3>
-    Floating button showing options to the user to add or edit the log times.
+    <p>Floating button showing options to the user to add or edit the log times.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/edit_add_logtime.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3> Add log times</h3>
-    If the phone runs out of charging and log time does not get recorded, we have provided a option to the user to add the work hours 
+    <p>If the phone runs out of charging and log time does not get recorded, we have provided a option to the user to add the work hours</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log work notification</h3>
-    When the user enters work location a notification is shown to the user with options to yes or no. We have provided prompt to the user through wich they can select if they are there to work or on any other business. If the user clicks on 'no' the time does not get logged. 
+    <p>When the user enters work location a notification is shown to the user with options to yes or no. We have provided prompt to the user through wich they can select if they are there to work or on any other business. If the user clicks on 'no' the time does not get logged.</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Left work notification</h3>
-    The user is alerted with a notification that they leave the work location.  
+    <p>The user is alerted with a notification that they leave the work location.</p>  
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log list</h3>
-    List of all work hours are shown where the user can go through them and manually edit or delete if any of them is incorrectly logged
+   <p> List of all work hours are shown where the user can go through them and manually edit or delete if any of them is incorrectly logged</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin greater than checkout</h3>
-    A pop up message is shown when the user enters checkin time greater than checkout time
+   <p> A pop up message is shown when the user enters checkin time greater than checkout time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkout less than checkin</h3>
-    A message is shown when the user enters checkout time lesser than checkin time
+    <p>A message is shown when the user enters checkout time lesser than checkin time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin should not be equal to checkout</h3>
-    A message is shown when the user enters checkin time equal to checkout time
+    <p>A message is shown when the user enters checkin time equal to checkout time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Payment notification</h3>
-    A pop message is shown saying that taxes are not included in the pay calculation
+    <p>A pop message is shown saying that taxes are not included in the pay calculation</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Data already exists</h3>
-    A message is shown to the user when the user tries to enter checkin and checkout times that are already present.
+    <p>A message is shown to the user when the user tries to enter checkin and checkout times that are already present.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
 </div>
 
