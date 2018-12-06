@@ -40,7 +40,9 @@
     </tbody>
 </table>
 
-GitHub Repo Link -  [Click here](https://github.com/albrink92/part-timer)
+
+  ## GitHub Repo Link - [https://github.com/albrink92/part-timer](https://github.com/albrink92/part-timer)
+
 
 # Project Summary
 
@@ -49,12 +51,16 @@ We have developed an application that allows international students who work par
 
 ## Libraries
 
-**Google Maps geofencing API:** geofencing defines perimeters and triggers notifications when a user crosses that perimeter. It is used to track user’s entry/exit at a set location.
+**Google Maps geofencing API:** Geofencing [1] defines perimeters and gives notifications when a user crosses that perimeter. It is for us the track user’s entry/exit at a set location.
 Source [here](https://developers.google.com/location-context/geofencing/)
 
-**Room Persistence Library** 
-"The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite. The library helps you create a cache of your app's data on a device that's running your app. This cache, which serves as your app's single source of truth, allows users to view a consistent copy of key information within your app, regardless of whether users have an internet connection."
+**Room Persistence Library:** 
+The Room persistence library [2] provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite. The library helps you create a cache of your app's data on a device that's running your app. This cache, which serves as your app's single source of truth, allows users to view a consistent copy of key information within your app, regardless of whether users have an internet connection. 
 Source [here](https://developer.android.com/topic/libraries/architecture/room)
+
+**Architecture components**
+Architecture components [3] were used to handle data persistence while showing the list of log times. 
+Source [here](https://developer.android.com/topic/libraries/architecture/)
 
 ## Installation Notes
 This app has to be installed on the phone as it will not work in the emulator. The reason being that the Geofencing API used in the app does not support emulators. On the phone, it is installed like any other Android package.
@@ -63,7 +69,7 @@ This app has to be installed on the phone as it will not work in the emulator. T
 
 **Problem 1: Running database queries on main thread caused a little delay in app**
 
-We used AsyncTask to leverage the multi-threading options of Android and run the database queries on a secondary thread to reduce percieved latency.
+We used AsyncTask [4] to leverage multi-threading option of Android and run the database queries on a secondary thread to avoid blocking UI thread [5]. 
 
 
 ```
@@ -79,7 +85,7 @@ AsyncTask.execute(new Runnable() {
 ```
 **Problem 2: Tracking user location using inbuilt GPS drained battery**
 
-Using android LocationServices resulted in low power efficiency and poor GPS accuracy so we had to find another solution. The answer was Geofencing - a feature also offered in Android Studio which more accurately tracked the user location, preserved more battery power, and worked even when the app was not running. 
+Using android LocationServices resulted in low power efficiency and poor GPS accuracy so we had to find another solution. The answer was the Geofencing - a feature also offered in Android Studio which more accurately user tracked location, preserved more battery power, and worked even when the app was not running. 
 ```
 // The method we implemented that solved our problem
 @NonNull
@@ -128,12 +134,8 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/lofiproto.jpg" width = 650 height = 800>
 
-## Site map
-
-<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG" width = 900 height = 500>
-
 ## Wireframe
-
+Wireframes were designed using proto.io [6]. 
 <div>
     <h3>Home page wireframe</h3>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_wireframe1.JPG" width = 300 height = 500>
@@ -149,23 +151,31 @@ As data will be stored locally on user’s devices, they will have complete cont
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_wireframe.JPG" width = 300 height = 500>
 </div>
 
+## Site map
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/sitemap.JPG" width = 900 height = 500>
+
+## ER Diagram
+
+<img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/ER.jpeg" width = 900 height = 500>
+
 ## Screenshots
 
 <div>
 <h3> Home page </h3>
-<p>Home page shows the check-in, check-out times and total number of hours worked in the current week. A floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.</p>
+<p>Home page shows the check-in, check-out times and total number of hours worked in the current week. Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
 </div>
 
 <div>
 <h3>Stats page</h3>
-<p>The stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly time periods are shown in bar chart.</p>
+<p>Stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly are shown in bar chart.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats1.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3> Settings page </h3>
-<p>The settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.</p>
+<p>Settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
 </div>
 
@@ -184,62 +194,62 @@ As data will be stored locally on user’s devices, they will have complete cont
 
 <div>
     <h3> Add log times</h3>
-    <p>If the phone runs out of power and the log time does not get recorded, we have provided a option to the user to add the work hours manually</p> 
+    <p>If the phone runs out of charging and log time does not get recorded, we have provided a option to the user to add the work hours</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log work notification</h3>
-    <p>When the user enters their work location a notification is shown to the user with the options; yes or no. We have provided a prompt to the user through which they specify whether they are at this location to work or simply visit. If the user clicks on 'no' the time does not get logged.</p> 
+    <p>When the user enters work location a notification is shown to the user with options to yes or no. We have provided prompt to the user through wich they can select if they are there to work or on any other business. If the user clicks on 'no' the time does not get logged.</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Left work notification</h3>
-    <p>The user is alerted with a notification that they have left the work location.</p>  
+    <p>The user is alerted with a notification that they leave the work location.</p>  
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log list</h3>
-   <p> List of all work hours is shown so the user can go through them and manually edit or delete and of them if they are incorrectly logged</p>
+   <p> List of all work hours are shown where the user can go through them and manually edit or delete if any of them is incorrectly logged</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin greater than checkout</h3>
-   <p> A pop up message is shown when the user enters a checkin time greater than the checkout time (error handling)</p>
+   <p> A pop up message is shown when the user enters checkin time greater than checkout time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkout less than checkin</h3>
-    <p>A message is shown when the user enters a checkout time lesser than checkin time (error handling)</p>
+    <p>A message is shown when the user enters checkout time lesser than checkin time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin should not be equal to checkout</h3>
-    <p>A message is shown when the user enters a checkin time equal to checkout time</p>
+    <p>A message is shown when the user enters checkin time equal to checkout time</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Payment notification</h3>
-    <p>A popup message is shown saying that taxes are not included in the pay calculation</p>
+    <p>A pop message is shown saying that taxes are not included in the pay calculation</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Data already exists</h3>
-    <p>A message is shown when the user tries to enter a checkin and checkout time combination that is already present.</p>
+    <p>A message is shown to the user when the user tries to enter checkin and checkout times that are already present.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
 </div>
 
 ## Testing methodologies
 
 ### Functionality Testing
-Simulated GPS changes successfully triggered work-hour logging. Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page.
+Simulated GPS changes successfully triggered work-hour logging. Added checkin and checkout times, which successfully result in generating work-hour stats in the Stats Page. Functionally checkin time has to be lesser than checkout time, we have tested the functionality and handled the errors accordingly. The functionalities pay per hour and 24 hour time format have been tested.
 
 ### Performance Testing
 Moved from Android location manager class to Google’s Geofence API to increase battery efficiency and GPS accuracy. A performance drop occurred when querying the Room database, so we implemented asynchronous database querying. 
@@ -266,8 +276,8 @@ Further development would see us begin to integrate calendars, add suggested bus
 - Show estimated pay for this week (Completed)
 
 #### Bonus Functionality
-- Edit check-in time and check-out time (Implemented)
-- Option to change time format (Implemented) 
+- Edit check-in time and check-out time (Completed)
+- Option to change time format (Completed) 
 - Show suggested bus routes (Not Implemented)
 - Show additional tips (Not Implemented)
 - Calculate and show additional statistics (Not Implemented)
@@ -277,9 +287,24 @@ Further development would see us begin to integrate calendars, add suggested bus
 
 
 ## Sources
-- Design guides [Prototype and ClickStream tool](https://proto.io/)
-- Research material - [Android Developer Guides](https://developer.android.com/guide/)
-- Android libraries: [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room), Multi-threading [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask)
-- Chart library: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
-- Geofences: [Geofences](https://developer.android.com/training/location/geofencing)
-- Room persistence: [Room persistence](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0) 
+
+[1]"Create and monitor geofences  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/training/location/geofencing. [Accessed: 05- Dec- 2018].
+
+[2]"Room Persistence Library  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/topic/libraries/architecture/room. [Accessed: 05- Dec- 2018].
+
+[3]"Android Architecture Components  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/topic/libraries/architecture/. [Accessed: 06- Dec- 2018].
+
+[4]"AsyncTask  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/reference/android/os/AsyncTask. [Accessed: 05- Dec- 2018].
+
+[5]"Processes and threads overview  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/guide/components/processes-and-threads. [Accessed: 06- Dec- 2018].
+
+[6]"Proto.io - Prototypes that feel real", Proto.io. [Online]. Available: https://proto.io/. [Accessed: 05- Dec- 2018].
+
+[7]"PhilJay/MPAndroidChart", GitHub, 2018. [Online]. Available: https://github.com/PhilJay/MPAndroidChart. [Accessed: 05- Dec- 2018].
+
+[8]"Android Room with a View - Java", Codelabs.developers.google.com, 2018. [Online]. Available: https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0. [Accessed: 05- Dec- 2018].
+
+[9]"Developer Guides  |  Android Developers", Android Developers, 2018. [Online]. Available: https://developer.android.com/guide/. [Accessed: 05- Dec- 2018].
+
+[10]"Android Asset Studio", Romannurik.github.io, 2018. [Online]. Available: https://romannurik.github.io/AndroidAssetStudio/index.html. [Accessed: 06- Dec- 2018].
+
