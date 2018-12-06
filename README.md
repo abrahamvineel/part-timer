@@ -51,7 +51,7 @@ We have developed an application that allows international students who work par
 
 ## Libraries
 
-**Google Maps geofencing API:** Geofencing [1] defines perimeters and gives notifications when a user crosses that perimeter. It is for us the track user’s entry/exit at a set location.
+**Google Maps geofencing API:** Geofencing [1] defines perimeters and triggers notifications when a user crosses that perimeter. It is used to track user’s entry/exit at a set location.
 Source [here](https://developers.google.com/location-context/geofencing/)
 
 **Room Persistence Library:** 
@@ -69,7 +69,7 @@ This app has to be installed on the phone as it will not work in the emulator. T
 
 **Problem 1: Running database queries on main thread caused a little delay in app**
 
-We used AsyncTask [4] to leverage multi-threading option of Android and run the database queries on a secondary thread to avoid blocking UI thread [5]. 
+We used AsyncTask [4] to leverage the multi-threading options of Android and run the database queries on a secondary thread to avoid blocking the UI thread [5]. 
 
 
 ```
@@ -85,7 +85,8 @@ AsyncTask.execute(new Runnable() {
 ```
 **Problem 2: Tracking user location using inbuilt GPS drained battery**
 
-Using android LocationServices resulted in low power efficiency and poor GPS accuracy so we had to find another solution. The answer was the Geofencing - a feature also offered in Android Studio which more accurately user tracked location, preserved more battery power, and worked even when the app was not running. 
+Using android LocationServices resulted in low power efficiency and poor GPS accuracy so we had to find another solution. The answer was  Geofencing - a feature also offered in Android Studio which more accurately tracker the user location, preserved more battery power, and worked even when the app was not running. 
+
 ```
 // The method we implemented that solved our problem
 @NonNull
@@ -163,19 +164,19 @@ Wireframes were designed using proto.io [6].
 
 <div>
 <h3> Home page </h3>
-<p>Home page shows the check-in, check-out times and total number of hours worked in the current week. Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.</p>
+<p>The home page shows the check-in, check-out times and total number of hours worked in the current week. A Floating button at the bottom right of the page gives an option to the user to and and edit the check-in and check-out times. Estimated pay is also shown to the user.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/home_page.jpeg" width=300 height=500>
 </div>
 
 <div>
 <h3>Stats page</h3>
-<p>Stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly are shown in bar chart.</p>
+<p>The stats page has a circular progress bar which shows the weekly hours worked in that current week. Green color shows the percentage of hours worked and the remaining percentage is shown in red color. The rest of the statistics for weekly and monthly time periods are shown in bar chart.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/stats1.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3> Settings page </h3>
-<p>Settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.</p>
+<p>The settings page allows the user to add work location. The user can also switch between a 24 hour and 12 hour time format. The user can enter hourly pay rate of the current part time work which will be displayed as estimated pay on the home page. The user can contact us by clicking on the mail icon.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/settings_page.jpeg" width = 300 height = 500>
 </div>
 
@@ -194,55 +195,55 @@ Wireframes were designed using proto.io [6].
 
 <div>
     <h3> Add log times</h3>
-    <p>If the phone runs out of charging and log time does not get recorded, we have provided a option to the user to add the work hours</p> 
+    <p>If the phone runs out of power and the log time does not get recorded, we have provided a option to the user to add the work hours manually</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/add_logtimes.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log work notification</h3>
-    <p>When the user enters work location a notification is shown to the user with options to yes or no. We have provided prompt to the user through wich they can select if they are there to work or on any other business. If the user clicks on 'no' the time does not get logged.</p> 
+    <p>When the user enters their work location a notification is shown to the user with the options; yes or no. We have provided a prompt to the user through which they specify whether they are there at this location to work or simply visit. If the user clicks on 'no' the time does not get logged.</p> 
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Left work notification</h3>
-    <p>The user is alerted with a notification that they leave the work location.</p>  
+    <p>The user is alerted with a notification that they have left the work location.</p>  
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/left_work_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Log list</h3>
-   <p> List of all work hours are shown where the user can go through them and manually edit or delete if any of them is incorrectly logged</p>
+   <p> List of all work hours is shown so the user can go through them and manually edit or delete and of them if they are incorrectly logged </p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/log_list.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin greater than checkout</h3>
-   <p> A pop up message is shown when the user enters checkin time greater than checkout time</p>
+   <p> A pop up message is shown when the user enters a checkin time greater than the checkout time (error handling)</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/msg_wrong_log_times.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkout less than checkin</h3>
-    <p>A message is shown when the user enters checkout time lesser than checkin time</p>
+    <p>A message is shown when the user enters a checkout time lesser than the checkin time (error handling)</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkout_less_than_checkin.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Checkin should not be equal to checkout</h3>
-    <p>A message is shown when the user enters checkin time equal to checkout time</p>
+    <p>A message is shown when the user enters a checkin time equal to checkout time (error handling)</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/checkin_checkout_not_equal.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Payment notification</h3>
-    <p>A pop message is shown saying that taxes are not included in the pay calculation</p>
+    <p>A popup message is shown saying that taxes are not included in the pay calculation</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/payment_notification.jpeg" width = 300 height = 500>
 </div>
 
 <div>
     <h3>Data already exists</h3>
-    <p>A message is shown to the user when the user tries to enter checkin and checkout times that are already present.</p>
+    <p>A message is shown when the user tries to enter a checkin and checkout time combination that is already present.</p>
 <img src = "https://github.com/albrink92/part-timer/blob/master/design_resources/data_already_exists_msg.jpeg" width = 300 height = 500>
 </div>
 
