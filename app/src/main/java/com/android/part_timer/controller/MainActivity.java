@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.android.part_timer.R;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivity";
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
         bottom_nav.setOnNavigationItemSelectedListener(navigation_listener);
         bottom_nav.setSelectedItemId(R.id.home);
-
     }
 
     @Override

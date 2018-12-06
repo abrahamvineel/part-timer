@@ -119,8 +119,8 @@ public class GeofenceTransitionsIntentServices extends IntentService {
         PendingIntent noActionIntent = PendingIntent.getBroadcast(this,
                 2, broadcastNoIntent, PendingIntent.FLAG_UPDATE_CURRENT);
          notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                 .setColor(Color.RED)
                 .setContentTitle(notificationDetails)
                 .setContentText(text)
@@ -133,8 +133,8 @@ public class GeofenceTransitionsIntentServices extends IntentService {
                 .build();
         }else{
             notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_background)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background))
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .setColor(Color.RED)
                     .setContentTitle(notificationDetails)
                     .setContentText(text)
